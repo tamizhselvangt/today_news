@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'pages/HomePage.dart';
 import 'package:get/get.dart';
+import 'pages/Example.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomePage(),
+      home: ExamplePage(),
     );
   }
 }
