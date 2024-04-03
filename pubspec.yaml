@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   get: ^4.6.6
   http: ^1.2.1
+  flutter_image_filters: ^0.0.17
 
 dev_dependencies:
   flutter_test:
@@ -62,14 +63,33 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/
     - assets/fonts/
   fonts:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Regular.ttf
-    - family: Chomsky
+    - family: Lora
       fonts:
-        - asset: assets/fonts/Chomsky.otf
+        - asset: assets/fonts/Lora-Regular.ttf
+    - family: RobotoSlab
+      fonts:
+        - asset: assets/fonts/RobotoSlab-Regular.ttf
+    - family: LibreBaskerville-Regular
+      fonts:
+        - asset: assets/fonts/LibreBaskerville-Regular.ttf
+    - family: LibreBaskerville-Bold
+      fonts:
+        - asset: assets/fonts/LibreBaskerville-Bold.ttf
+    - family: stretch-pro
+      fonts:
+        - asset: assets/fonts/stretch-pro.regular.ttf
+    - family: bronice-regular
+      fonts:
+        - asset: assets/fonts/bronice-regular.otf
+    - family: bronice-bold
+      fonts:
+        - asset: assets/fonts/bronice-bold.otf
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
