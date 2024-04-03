@@ -13,7 +13,7 @@ class ExamplePage extends StatelessWidget {
       appBar: AppBar(),
       body: Container(
         color: Color(0xff0c7c0fa),
-        height: 520,
+        height: 530,
         width: double.infinity,
         child: Padding(
           padding: EdgeInsets.fromLTRB(15,20,10,0),
@@ -65,6 +65,14 @@ class ExamplePage extends StatelessWidget {
               articlePrevieDescription(),
               SizedBox(height: 30,),
               articleBottomIcons(),
+              SizedBox(
+                height: 8,
+              ),
+              Divider(
+                color: Colors.black26,
+                thickness: 1,
+                height: 10,
+              )
             ],
           ),
         ),
@@ -111,7 +119,7 @@ Widget articleBottomIcons(){
           Text(" 17 houres ago",
           style: TextStyle(
             fontSize: 18,
-            color: Colors.black26
+            color: Colors.black45
           ),)
         ],
       )
@@ -160,3 +168,5 @@ Widget previewPoster(){
       ],
     );
 }
+
+
