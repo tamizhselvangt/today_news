@@ -38,6 +38,10 @@ dependencies:
   get: ^4.6.6
   http: ^1.2.1
   flutter_image_filters: ^0.0.17
+  http_parser: ^4.0.2
+  html: ^0.15.4
+  gap: ^3.0.1
+  lottie: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -63,36 +67,53 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/animations/logInAnimation.json
+    - assets/animations/tickSucessfulAnimation.json
     - assets/images/
+    - assets/images/wave1.png
+    - assets/images/altNewsPoster.jpeg
     - assets/fonts/
   fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
     - family: Lora
       fonts:
         - asset: assets/fonts/Lora-Regular.ttf
-    - family: RobotoSlab
-      fonts:
-        - asset: assets/fonts/RobotoSlab-Regular.ttf
     - family: LibreBaskerville-Regular
       fonts:
         - asset: assets/fonts/LibreBaskerville-Regular.ttf
-    - family: LibreBaskerville-Bold
-      fonts:
-        - asset: assets/fonts/LibreBaskerville-Bold.ttf
     - family: stretch-pro
       fonts:
         - asset: assets/fonts/stretch-pro.regular.ttf
     - family: bronice-regular
       fonts:
         - asset: assets/fonts/bronice-regular.otf
-    - family: bronice-bold
+    - family: apercu_regular_pro
       fonts:
-        - asset: assets/fonts/bronice-bold.otf
-
-
-  # An image asset can refer to one or more resolution-specific "variants", see
+        - asset: assets/fonts/apercu_regular_pro.otf
+    - family: apercu_bold_pro
+      fonts:
+        - asset: assets/fonts/apercu_bold_pro.otf
+    - family: Futura-Bold
+      fonts:
+        - asset: assets/fonts/Futura-Bold.ttf
+    - family: Futura-Book
+      fonts:
+        - asset: assets/fonts/Futura-Book.ttf
+    - family: Reality_Check
+      fonts:
+        - asset: assets/fonts/Reality_Check.otf
+    - family: Poly
+      fonts:
+        - asset: assets/fonts/Poly-Regular.ttf
+    - family: FKRomanStandard
+      fonts:
+        - asset: assets/fonts/FKRomanStandard.otf
+    - family: CourierPrime
+      fonts:
+        - asset: assets/fonts/CourierPrime-Regular.ttf
+    - family: PolySans
+      fonts:
+        - asset: assets/fonts/PolySans Neutral.ttf
+      # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
   # For details regarding adding assets from package dependencies, see
