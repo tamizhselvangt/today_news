@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:today_news/Components/cNews_article.dart';
+import 'package:day_today/Components/cNews_article.dart';
 import 'package:gap/gap.dart';
 
 class ArticlePage extends StatelessWidget {
@@ -18,7 +18,7 @@ class ArticlePage extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             onPressed: (){
-              Get.back();
+              Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back),
             color: Colors.black,

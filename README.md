@@ -1,4 +1,4 @@
-# today_news
+# day_today
 
 A new Flutter project.
 

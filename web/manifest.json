@@ -1,6 +1,6 @@
 {
-    "name": "today_news",
-    "short_name": "today_news",
+    "name": "day_today",
+    "short_name": "day_today",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

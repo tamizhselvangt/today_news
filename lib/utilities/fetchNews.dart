@@ -38,9 +38,12 @@ class NewsArticle {
 
 
 // Define a Future<NewsArticle> function to fetch the news article data
-Future<List<NewsArticle>> fetchNewsArticle() async {
+Future<List<NewsArticle>> fetchNewsArticle(String searchQuery) async {
+
   final apiKey ="9fcf5998c99d4970a364d0a28c0beb04";
-  final url = "https://newsapi.org/v2/everything?q=bitcoin&apiKey=${apiKey}";
+  // final apiKey = "b81871b6349f459db5962a1ee3d9976c";
+
+  final url = "https://newsapi.org/v2/everything?q=$searchQuery&sortBy=popularity&apiKey=${apiKey}";
   final response = await http.get(Uri.parse(url));
   if (response.statusCode == 200) {
     final jsonBody = jsonDecode(response.body);

@@ -1,4 +1,4 @@
-name: today_news
+name: day_today
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -42,6 +42,12 @@ dependencies:
   html: ^0.15.4
   gap: ^3.0.1
   lottie: ^3.1.0
+  sign_button: ^2.0.6
+  provider: ^6.1.2
+  card_swiper: ^3.0.1
+  flutter_carousel_widget: ^2.2.0
+  getwidget: ^4.0.0
+  like_button: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +75,8 @@ flutter:
   assets:
     - assets/animations/logInAnimation.json
     - assets/animations/tickSucessfulAnimation.json
+    - assets/animations/LoadingAnimation.json
+    - assets/animations/newsAnimation.json
     - assets/images/
     - assets/images/wave1.png
     - assets/images/altNewsPoster.jpeg

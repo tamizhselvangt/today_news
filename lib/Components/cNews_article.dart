@@ -1,20 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
+import 'package:day_today/constants/constants.dart';
 
 
 Text articleTitle(String title) {
   return Text(
       "—${title}",
-    style: TextStyle(
-        color: Colors.black,
-        fontWeight: FontWeight.w800,
-        fontSize: 32,
-        letterSpacing: 0,
-        height: 0,
-        fontFamily: 'PolySans'
-    ),
+    style: kNewsArticleTitle
   );
 }
 
@@ -29,9 +22,7 @@ Align newsHeadLine() {
           right: 0,
           child: Container(
             height: 5,
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
+            decoration: const BoxDecoration(color: Colors.white,),
           ),
         ),
         Positioned(
@@ -40,12 +31,10 @@ Align newsHeadLine() {
           right: 0,
           child: Container(
             height: 14,
-            decoration: BoxDecoration(
-              color: Color(0xfff3e386),
-            ),
+            decoration: const BoxDecoration(color: Color(0xfff3e386),),
           ),
         ),
-        Text(
+        const Text(
           "NEWS",
           style: TextStyle(
               fontSize: 28,
@@ -58,8 +47,8 @@ Align newsHeadLine() {
 }
 
 RichText articleContent() {
-  return RichText(
-      text: TextSpan(
+  return  RichText(
+      text: const TextSpan(
           text:
           "In the depths of the ocean, where sunlight struggles to penetrate, lies a realm of mystery and power: underwater volcanoes. These geological marvels, often hidden from human eyes, play a crucial role in shaping the Earth's surface and influencing oceanic ecosystems in ways we are only beginning to understand.\n\n"
               "Scientists have long been intrigued by these submerged giants, which differ in many ways from their terrestrial counterparts. While traditional volcanoes are well-documented and studied, their underwater counterparts remain largely unexplored due to the technical challenges of oceanic research. However, recent advances in underwater technology have allowed researchers to delve deeper into this hidden world.\n\n"
@@ -80,51 +69,60 @@ RichText articleContent() {
           )));
 }
 
-Stack articlePoster(String posterUrl) {
-  return Stack(
-    children: [
-      Container(
-        padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-        child: Container(
-          width: 350,
-          height: 230,
-          decoration: BoxDecoration(
-            color: Color(0xffc8ebfd),
-            border: Border.all(color: Colors.black, width: 2.3),
-            borderRadius: BorderRadius.circular(0.0),
-          ),
-        ),
-      ),
-      Container(
-        width: 340,
-        height: 225,
-        child: ClipRect(
-          child: Image.network(
-            posterUrl,
-            fit: BoxFit.cover,
-            color: Colors.white.withOpacity(1),
-            colorBlendMode: BlendMode.modulate,
-          ),
-        ),
-      ),
-      Positioned(
-        left: 300,
-        top: 190,
-        child: Stack(
-          children: [
-            Container(
-                height: 30,
-                width: 31,
-                decoration: BoxDecoration(color: Color(0xfff5d548))),
-            Icon(
-              Icons.camera_alt_outlined,
-              size: 30,
-              color: Colors.black87,
+Widget articlePoster(String posterUrl) {
+  return Container(
+    child: Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+          child: Container(
+            width: 350,
+            height: 230,
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 65,
+                  offset: const Offset(5, 5), // changes position of shadow
+                ),
+              ],
+              border: Border.all(color: Colors.black, width: 2.3),
+              borderRadius: BorderRadius.circular(0.0),
             ),
-          ],
+          ),
         ),
-      )
-    ],
+        SizedBox(
+          width: 340,
+          height: 225,
+          child: ClipRect(
+            child: Image.network(
+              posterUrl,
+              fit: BoxFit.cover,
+              color: Colors.white.withOpacity(1),
+              colorBlendMode: BlendMode.modulate,
+            ),
+          ),
+        ),
+        Positioned(
+          left: 300,
+          top: 190,
+          child: Stack(
+            children: [
+              Container(
+                  height: 30,
+                  width: 31,
+                  decoration: const BoxDecoration(color: Color(0xfff5d548))),
+              const Icon(
+                Icons.camera_alt_outlined,
+                size: 30,
+                color: Colors.black87,
+              ),
+            ],
+          ),
+        )
+      ],
+    ),
   );
 }
 
@@ -139,7 +137,7 @@ Align HeadLine() {
           right: 0,
           child: Container(
             height: 5,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
             ),
           ),
@@ -150,12 +148,12 @@ Align HeadLine() {
           right: 0,
           child: Container(
             height: 14,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xfff3e386),
             ),
           ),
         ),
-        Text(
+        const Text(
           "CRYPTO",
           style: TextStyle(
               fontSize: 28,
@@ -172,24 +170,31 @@ Stack followBtn() {
   return Stack(
     children: [
       Container(
-        padding: EdgeInsets.fromLTRB(5, 5, 0, 0),
+        padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
         child: Container(
           width: 120,
           height: 40,
-          child: Image.asset(
-            "assets/images/stripe.jpeg",
-            fit: BoxFit.cover,
-          ),
           decoration: BoxDecoration(
             // color: Colors.black,
             border: Border.all(color: Colors.black, width: 2.3),
             borderRadius: BorderRadius.circular(0.0),
           ),
+          child: Image.asset(
+            "assets/images/stripe.jpeg",
+            fit: BoxFit.cover,
+          ),
         ),
       ),
-      Container(
+      SizedBox(
+        width: 120,
+        height: 40,
         child: ClipRect(
           child: Container(
+            decoration: BoxDecoration(
+              color: Colors.black,
+              border: Border.all(color: Colors.black, width: 2.3),
+              borderRadius: BorderRadius.circular(0.0),
+            ),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -210,15 +215,8 @@ Stack followBtn() {
                 )
               ],
             ),
-            decoration: BoxDecoration(
-              color: Colors.black,
-              border: Border.all(color: Colors.black, width: 2.3),
-              borderRadius: BorderRadius.circular(0.0),
-            ),
           ),
         ),
-        width: 120,
-        height: 40,
       ),
     ],
   );
@@ -229,26 +227,33 @@ Stack openArticleBtn() {
   return Stack(
       children: [
         Container(
-          padding: EdgeInsets.fromLTRB(5, 5, 0, 0),
+          padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
           child: Container(
             width: 200,
             height: 50,
-            child: Image.asset(
-              "assets/images/stripe.jpeg",
-              fit: BoxFit.cover,
-            ),
             decoration: BoxDecoration(
               // color: Colors.black,
               border: Border.all(
                   color: Colors.black, width: 2.3),
               borderRadius: BorderRadius.circular(0.0),
             ),
+            child: Image.asset(
+              "assets/images/stripe.jpeg",
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-        Container(
+        SizedBox(
+          width: 200,
+          height: 50,
           child: ClipRect(
             child: Container(
-              child: Row(
+              decoration: BoxDecoration(
+                color: Colors.yellow,
+                border: Border.all(color: Colors.black, width: 2.3),
+                borderRadius: BorderRadius.circular(0.0),
+              ),
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
@@ -268,15 +273,8 @@ Stack openArticleBtn() {
                     weight: 30,)
                 ],
               ),
-              decoration: BoxDecoration(
-                color: Colors.yellow,
-                border: Border.all(color: Colors.black, width: 2.3),
-                borderRadius: BorderRadius.circular(0.0),
-              ),
             ),
           ),
-          width: 200,
-          height: 50,
         )
       ],
     );

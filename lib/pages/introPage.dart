@@ -1,13 +1,13 @@
 import 'dart:math' as math;
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:today_news/pages/HomePage.dart';
+
+import 'package:day_today/pages/signUpPage.dart';
 
 class Introduction extends StatelessWidget {
   const Introduction({super.key});
@@ -128,7 +128,7 @@ class Introduction extends StatelessWidget {
                             children: [
                               TextButton(
                                 onPressed: (){
-                                  Get.to(HomePage());
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpPage()));
                                 },
                                 child: Text(
                                   "Get started",
@@ -152,11 +152,16 @@ class Introduction extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Icon(
-                                color: Colors.black,
-                                Icons.arrow_forward,
-                                size: 30,
-                                weight: 30,)
+                              IconButton(
+                                onPressed: (){
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                                },
+                               icon: Icon(
+                                  color: Colors.black,
+                                  Icons.arrow_forward,
+                                  size: 30,
+                                  weight: 30,),
+                              ),
                             ],
                           ),
                           decoration: BoxDecoration(
@@ -176,6 +181,7 @@ class Introduction extends StatelessWidget {
           ),
           Stack(
             children: [
+
               Container(
                 height: 437,
                 width: 450,

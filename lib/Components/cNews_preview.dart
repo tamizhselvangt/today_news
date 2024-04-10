@@ -2,18 +2,17 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:today_news/utilities/fetchNews.dart';
-
+import 'package:day_today/utilities/fetchNews.dart';
+import 'package:lottie/lottie.dart';
 import 'package:http/http.dart' as http;
-import 'package:today_news/pages/articlePage.dart';
+import 'package:day_today/pages/articlePage.dart';
 
 
-Widget articlePreviewCard(){
-  return Container(
+Widget articlePreviewCard(String searchQuery){
+  return SizedBox(
     height: 600,
     child: FutureBuilder<List<NewsArticle>>(
-      future: fetchNewsArticle(),
+      future: fetchNewsArticle(searchQuery),
       builder: (BuildContext context, AsyncSnapshot<List<NewsArticle>> snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
@@ -24,31 +23,35 @@ Widget articlePreviewCard(){
               if (article.urlToImage == null || article.description!.isEmpty) return Container();
                return GestureDetector(
                  onTap: (){
-                   Get.to(ArticlePage(title: article.title!, posterUrl: article.urlToImage!));
-                 },
+                   Navigator.push(context,
+                       MaterialPageRoute(
+                       builder: (context) => ArticlePage(
+                       title: article.title!,
+                       posterUrl: article.urlToImage!)));
+                   },
                  child: Container(
-                   decoration: BoxDecoration(
+                   decoration: const BoxDecoration(
                      border: Border(
                        top: BorderSide(width: 0.3, color: Colors.black54),
                        bottom: BorderSide(width: 0.2, color: Colors.black),
                      )
                  ),
                    child: Container(
-                      color: Color(0xffE1CDFF),
+                      color: const Color(0xffE1CDFF),
                       height: 510,
                       width: double.infinity,
                       child: Padding(
-                        padding: EdgeInsets.fromLTRB(15,20,10,0),
+                        padding: const EdgeInsets.fromLTRB(15,20,10,0),
                         child: Column(
                           children: [
                             Headline(),
-                            SizedBox(height: 10,),
+                            const SizedBox(height: 10,),
                             articlePreviewTitle(article.title!),
-                            SizedBox(height: 10,),
+                            const SizedBox(height: 10,),
                             previewPoster(article.urlToImage!),
-                            SizedBox(height: 10,),
+                            const SizedBox(height: 10,),
                             articlePrevieDescription(article.description!),
-                            SizedBox(height: 20,),
+                            const SizedBox(height: 20,),
                             articleBottomIcons(),
                           ],
                         ),
@@ -61,7 +64,7 @@ Widget articlePreviewCard(){
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          return CircularProgressIndicator();
+          return Lottie.asset("assets/animations/LoadingAnimation.json");
         }
       },
     ),
@@ -71,7 +74,7 @@ Widget articlePreviewCard(){
 class Headline extends StatelessWidget {
 
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 30,
       child: Align(
         alignment: Alignment.centerLeft,
@@ -83,7 +86,7 @@ class Headline extends StatelessWidget {
               right: 0,
               child: Container(
                 height: 2,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                 ),
               ),
@@ -94,12 +97,12 @@ class Headline extends StatelessWidget {
               right: 0,
               child: Container(
                 height: 15,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xfff3e386),
                 ),
               ),
             ),
-            Text(
+            const Text(
               "HEADLINE",
               style: TextStyle(
                   fontSize: 20,
@@ -118,12 +121,12 @@ Widget articlePreviewTitle(String title){
   final desc = title.replaceAll("'", "\'").replaceAll(RegExp(r'[\u2018\u2019\u201C\u201D]'), "\'");
   final words = desc.split(' ');
   final first10Words = words.take(10).join(' ');
-  return Container(
+  return SizedBox(
     height: 70,
     child: RichText(
       text: TextSpan(
         text: "—",
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.w900,
           fontSize: 27,
@@ -132,14 +135,14 @@ Widget articlePreviewTitle(String title){
         children: [
           TextSpan(
             text: "${first10Words}",
-            style:TextStyle(
+            style:const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w800,
                 fontSize: 30,
                 fontFamily: 'PolySans'
             ),
           ),
-          TextSpan(
+          const TextSpan(
             text: "...",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -157,17 +160,17 @@ Widget articlePrevieDescription(String description){
   final desc = description.replaceAll(RegExp(r'[\u2018\u2019\u201C\u201D]'), "\'");
   final words = desc.split(' ');
   final first20Words = words.take(20).join(' ');
-  return Container(
+  return SizedBox(
     height: 70,
     child: RichText(
       text: TextSpan(
         text: "${first20Words}",
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black87,
           fontSize: 18,
         fontFamily: "FKRomanStandard",
         fontWeight: FontWeight.w700,),
-        children: [
+        children: const [
           TextSpan(
             text: '...',
             style: TextStyle(
@@ -194,7 +197,7 @@ Widget articlePrevieDescription(String description){
 }
 
 Widget articleBottomIcons(){
-  return Container(
+  return const SizedBox(
     height: 20,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -241,7 +244,7 @@ Widget previewPoster(String url){
     // child:
   var image = getImageStatusCode(url) != 404 ?
    ColorFiltered(
-     colorFilter: ColorFilter.matrix(<double>[
+     colorFilter: const ColorFilter.matrix(<double>[
        0.4, 0.6, 0, 0, 0,
        0.4, 0.6, 0, 0, 0,
        0.4, 0.6, 0, 0, 0,
@@ -254,25 +257,35 @@ Widget previewPoster(String url){
       colorBlendMode: BlendMode.modulate,
        ),
    ) :
-    Image(
+    const Image(
       image: AssetImage("assets/images/altNewsPoster.jpeg"),);
   return
-    Container(
+    SizedBox(
       height: 230,
       child: Stack(
         children: [
           Container(
-            padding: EdgeInsets.fromLTRB(10,10,0,0),
+            padding: const EdgeInsets.fromLTRB(10,10,0,0),
             child: Container(
               width: 350,
               height: 230,
               decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 45,
+                    offset: const Offset(5, 5), // changes position of shadow
+                  ),
+                ],
                 border: Border.all(color: Colors.black, width: 2.3),
                 borderRadius: BorderRadius.circular(0.0),
               ),
             ),
           ),
-          Container(
+          SizedBox(
+            width: 350,
+            height: 220,
             child: ClipRect(
               child:image,
               // Image.network(
@@ -283,8 +296,6 @@ Widget previewPoster(String url){
               // ),
               //
               ),
-            width: 350,
-            height: 220,
           ),
          const   Positioned(
               left: 310,
