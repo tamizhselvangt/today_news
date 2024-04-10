@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
+import 'package:like_button/like_button.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:share_plus/share_plus.dart';
+
 
 List<Widget> sharedArticles = [
     SharedArticleCard(
@@ -110,14 +112,24 @@ class SavedArticleCard extends StatelessWidget {
                           fontWeight: FontWeight.w500
                       ),),
                   ),
-                  Gap(15),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Gap(100),
-                      Icon(Icons.favorite_outline_rounded),
-                      Icon(Icons.ios_share_outlined)
+                      LikeButton(
+                        size: 23,
+                         circleColor:  CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc))
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 2.0),
+                        child: IconButton(
+                          onPressed: (){
+
+                            Share.share('check out my website https://example.com');
+                          },
+                          icon: Icon(
+                              Icons.ios_share_rounded,
+                             color: Color(0xff9E9E9E))),
+                      )
                     ],
                   )
                 ],

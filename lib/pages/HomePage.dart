@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             child: Transform.scale(
                 scale: scalanimation.value,
                 child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(34)),
+                    borderRadius: BorderRadius.all(Radius.circular(020)),
                     child: selectPage(selectedPAge),
                 )),
           ),
