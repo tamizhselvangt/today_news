@@ -1,11 +1,9 @@
 import 'dart:math' as math;
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-
 import 'package:day_today/pages/signUpPage.dart';
 
 class Introduction extends StatelessWidget {
@@ -17,6 +15,7 @@ class Introduction extends StatelessWidget {
       backgroundColor: Color(0xffCEFFD3),
       appBar: AppBar(backgroundColor: Color(0xffCEFFD3), title: appBarTitle()),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -178,55 +177,60 @@ class Introduction extends StatelessWidget {
               ],
             ),
           ),
-          Stack(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-
-              Container(
-                height: 437,
-                width: 450,
-                child: ClipRect(
-                  child: FittedBox(
-                    // clipBehavior: Clip.hardEdge,
-                      fit: BoxFit.none,
-                      child: Column(
-                        children: [
-                          Gap(550),
-                          Row(
+              SizedBox(height: 0,),
+              Stack(
+                children: [
+                  Container(
+                    height: 437,
+                    width: 450,
+                    child: ClipRect(
+                      child: FittedBox(
+                        // clipBehavior: Clip.hardEdge,
+                          fit: BoxFit.none,
+                          child: Column(
                             children: [
-                              Gap(150),
-                              Transform.rotate(
-                                angle: math.pi / 2,
-                                child: Image.asset("assets/images/toppng.com-abstract-lines-black-and-white-png-800x763.png"),
+                              Gap(550),
+                              Row(
+                                children: [
+                                  Gap(150),
+                                  Transform.rotate(
+                                    angle: math.pi / 2,
+                                    child: Image.asset("assets/images/toppng.com-abstract-lines-black-and-white-png-800x763.png"),
+                                  ),
+                                  // Gap(150)
+                                ],
                               ),
-                              // Gap(150)
                             ],
-                          ),
-                        ],
-                      )),
-                ),
-              ),
+                          )),
+                    ),
+                  ),
 
-              Container(
-                height: 437,
-                width: 450,
-                child: ClipRect(
-                  child: FittedBox(
-                    // clipBehavior: Clip.hardEdge,
-                      fit: BoxFit.none,
-                      child: Column(
-                        children: [
-                          Gap(70),
-                          Row(
+                  Container(
+                    height: 437,
+                    width: 450,
+                    child: ClipRect(
+                      child: FittedBox(
+                        // clipBehavior: Clip.hardEdge,
+                          fit: BoxFit.none,
+                          child: Column(
                             children: [
-                              Gap(160),
-                              Image.asset("assets/images/pngwing.png",
-                                height: 400,
-                                width: 500,),
+                              Gap(70),
+                              Row(
+                                children: [
+                                  Gap(160),
+                                  Image.asset("assets/images/pngwing.png",
+                                    height: 400,
+                                    width: 500,),
+                                ],
+                              ),
                             ],
-                          ),
-                        ],
-                      )),
-                ),
+                          )),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

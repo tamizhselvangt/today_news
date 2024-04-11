@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-
+import 'package:day_today/Components/cNews_preview.dart';
 
 class MySearchDelegate extends SearchDelegate{
 
@@ -40,15 +40,7 @@ class MySearchDelegate extends SearchDelegate{
 
   @override
   Widget buildResults(BuildContext context) {
-     return Center(
-       child: Text(
-         query,
-         style: TextStyle(
-           fontSize: 24,
-           fontFamily: "PolySans"
-         ),
-       ),
-     );
+     return  articlePreviewCard(query);
   }
 
   @override

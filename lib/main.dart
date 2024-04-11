@@ -4,7 +4,7 @@ import 'pages/HomePage.dart';
 import 'pages/Example.dart';
 import 'pages/introPage.dart';
 import 'package:provider/provider.dart';
-
+import 'package:day_today/pages/finace/cryptoPage.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -26,9 +26,10 @@ class MyApp extends StatelessWidget {
                 cursorColor: Colors.black,
           )
         ),
-        home: Introduction(),
+        // home: Introduction(),
         // home: HomePage(),
-        // home: ExamplePage(),
+        home: ExamplePage(),
+        // home: CryptoPage(),
       ),
     );
   }

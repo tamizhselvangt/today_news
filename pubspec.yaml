@@ -47,6 +47,13 @@ dependencies:
   flutter_carousel_widget: ^2.2.0
   like_button: ^2.0.5
   share_plus: ^8.0.3
+  firebase_core: ^2.29.0
+  custom_signin_buttons: ^1.0.2
+  social_login_buttons: ^1.0.7
+  chart_sparkline: ^1.0.15+1
+  syncfusion_flutter_charts: ^25.1.39+1
+  line_awesome_flutter: ^2.0.0
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +83,7 @@ flutter:
     - assets/animations/tickSucessfulAnimation.json
     - assets/animations/LoadingAnimation.json
     - assets/animations/newsAnimation.json
+    - assets/images/facbookIcon.png
     - assets/images/
     - assets/images/wave1.png
     - assets/images/altNewsPoster.jpeg

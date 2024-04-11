@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:day_today/Components/cNews_preview.dart';
 import 'package:day_today/utilities/selectedDomain.dart';
@@ -35,7 +36,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       return HomeScreen();
     }
   }
-
+  Color pageColor(){
+    if(selectedPAge == "Home"){
+      return  Color(0xFFBAA7E3);
+    }else if(selectedPAge == "Saved"){
+      return  Color(0xffFFCDA5);
+    }else{
+      return Colors.transparent;
+    }
+  }
   @override
   void initState() {
     _animationController =
@@ -60,7 +69,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFBAA7E3),
+      backgroundColor: pageColor(),
       resizeToAvoidBottomInset: false,
       extendBody: true,
       body: Stack(
@@ -71,7 +80,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             width: 288,
             left: isSideMenuClosed ? -288 : 0,
             height: MediaQuery.of(context).size.height,
-            child: SideMenu()),
+            child: SideMenu(color: pageColor(),)),
         Transform(
           alignment: Alignment.center,
           transform: Matrix4.identity()
@@ -110,7 +119,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
       // TODO Bottom  Navigation BAR
 
-      bottomNavigationBar: SafeArea(
+      bottomNavigationBar: bottomNavIcns(context),
+    );
+  }
+
+  Widget bottomNavIcns(BuildContext context) {
+    return Container(
+      color: pageColor(),
+      child: SafeArea(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -203,7 +219,9 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           TopDomainTitles(),
-          articlePreviewCard(context.watch<SelectedDomain>().selectedQuery),
+          Expanded(
+              // height: 600,
+              child: articlePreviewCard(context.watch<SelectedDomain>().selectedQuery)),
         ],
       ),
     );

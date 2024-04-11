@@ -9,65 +9,68 @@ import 'package:day_today/pages/articlePage.dart';
 
 
 Widget articlePreviewCard(String searchQuery){
-  return SizedBox(
-    height: 600,
-    child: FutureBuilder<List<NewsArticle>>(
-      future: fetchNewsArticle(searchQuery),
-      builder: (BuildContext context, AsyncSnapshot<List<NewsArticle>> snapshot) {
-        if (snapshot.hasData) {
-          return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-              final article = snapshot.data![index];
-              if (article.description == null || article.description!.isEmpty) return Container();
-              if (article.urlToImage == null || article.description!.isEmpty) return Container();
-               return GestureDetector(
-                 onTap: (){
-                   Navigator.push(context,
-                       MaterialPageRoute(
-                       builder: (context) => ArticlePage(
-                       title: article.title!,
-                       posterUrl: article.urlToImage!)));
-                   },
-                 child: Container(
-                   decoration: const BoxDecoration(
-                     border: Border(
-                       top: BorderSide(width: 0.3, color: Colors.black54),
-                       bottom: BorderSide(width: 0.2, color: Colors.black),
-                     )
-                 ),
-                   child: Container(
-                      color: const Color(0xffE1CDFF),
-                      height: 510,
-                      width: double.infinity,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(15,20,10,0),
-                        child: Column(
-                          children: [
-                            Headline(),
-                            const SizedBox(height: 10,),
-                            articlePreviewTitle(article.title!),
-                            const SizedBox(height: 10,),
-                            previewPoster(article.urlToImage!),
-                            const SizedBox(height: 10,),
-                            articlePrevieDescription(article.description!),
-                            const SizedBox(height: 20,),
-                            articleBottomIcons(),
-                          ],
+  return Column(
+    children: [
+      Expanded(
+        child: FutureBuilder<List<NewsArticle>>(
+          future: fetchNewsArticle(searchQuery),
+          builder: (BuildContext context, AsyncSnapshot<List<NewsArticle>> snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                  final article = snapshot.data![index];
+                  if (article.description == null || article.description!.isEmpty) return Container();
+                  if (article.urlToImage == null || article.description!.isEmpty) return Container();
+                   return GestureDetector(
+                     onTap: (){
+                       Navigator.push(context,
+                           MaterialPageRoute(
+                           builder: (context) => ArticlePage(
+                           title: article.title!,
+                           posterUrl: article.urlToImage!)));
+                       },
+                     child: Container(
+                       decoration: const BoxDecoration(
+                         border: Border(
+                           top: BorderSide(width: 0.3, color: Colors.black54),
+                           bottom: BorderSide(width: 0.2, color: Colors.black),
+                         )
+                     ),
+                       child: Container(
+                          color: Colors.transparent,
+                          height: 510,
+                          width: double.infinity,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15,20,10,0),
+                            child: Column(
+                              children: [
+                                Headline(),
+                                const SizedBox(height: 10,),
+                                articlePreviewTitle(article.title!),
+                                const SizedBox(height: 10,),
+                                previewPoster(article.urlToImage!),
+                                const SizedBox(height: 10,),
+                                articlePrevieDescription(article.description!),
+                                const SizedBox(height: 20,),
+                                articleBottomIcons(),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                 ),
-               );
-              },
-          );
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        } else {
-          return Lottie.asset("assets/animations/LoadingAnimation.json");
-        }
-      },
-    ),
+                     ),
+                   );
+                  },
+              );
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              return Lottie.asset("assets/animations/LoadingAnimation.json");
+            }
+          },
+        ),
+      ),
+    ],
   );
 }
 

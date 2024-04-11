@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +8,9 @@ import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:day_today/pages/HomePage.dart';
 // import 'package:get/get.dart';
-import 'package:sign_button/sign_button.dart';
-// import 'package:custom_signin_buttons/custom_signin_buttons.dart';
-
+// import 'package:sign_button/sign_button.dart';
+import 'package:custom_signin_buttons/custom_signin_buttons.dart';
+import 'package:social_login_buttons/social_login_buttons.dart';
 
 class SignUpPage extends StatefulWidget {
   static const String id = 'SignUp_Page';
@@ -40,7 +42,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
         child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -96,7 +98,49 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                         ),
                       )),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showModalBottomSheet(context: context, builder:(BuildContext context){
+                          return Container(
+                           height: 350,
+                           decoration: BoxDecoration(
+                             color: Color(0xffE5BDC1),
+                             borderRadius: BorderRadius.vertical(top: Radius.circular(30))
+                           ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                               children: [
+                                 SizedBox(height: 10),
+                                 SocialLoginButton(
+                                   height: 50,
+                                   width: 300,
+                                   borderRadius: 30,
+                                   buttonType: SocialLoginButtonType.google,
+                                   onPressed: () {},
+                                 ),
+                                 SizedBox(height: 20),
+                                 SocialLoginButton(
+                                   height: 50,
+                                   width: 300,
+                                   borderRadius: 30,
+                                   buttonType: SocialLoginButtonType.appleBlack,
+                                   onPressed: () {},
+                                 ),
+                                 SizedBox(height: 20),
+                                 SocialLoginButton(
+                                   backgroundColor: Color(0xff0866FF),
+                                   imageURL: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png",
+                                   height: 50,
+                                   width: 300,
+                                   borderRadius: 30,
+                                   buttonType: SocialLoginButtonType.facebook,
+                                   onPressed: () {},
+                                 ),
+                               ],
+                             ),
+                          );
+                        });
+                      },
                       child: Text(
                         'Don\'t have account? Sign up',
                         style: TextStyle(
@@ -113,36 +157,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                   SizedBox(
                     height: 20.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                    //   SignInButton(
-                    //     button: Button.Google,
-                    //     mini: true,
-                    //   ),
-                    //   SignInButton(
-                    //     button: Button.AppleDark,
-                    //     mini: true,
-                    //   ),
-                    //   SignInButton(
-                    //     button: Button.FacebookNew,
-                    //     mini: true,
-                    //   ),
-                      SignInButton.mini(
-                        buttonType: ButtonType.google,
-                        onPressed: () {},
-                      ),
-                      Material(
-                        elevation: 35,
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.transparent,
-                          child: InkWell(onTap: (){}, child: Image.asset("assets/images/appleLogo.png",height: 50,width: 42,))),
-                      SignInButton.mini(
-                        buttonType: ButtonType.facebook,
-                        onPressed: () {},
-                      ),
-                    ],
-                  )
+
                 ],
               ),
             ),

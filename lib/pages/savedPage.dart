@@ -15,7 +15,7 @@ class SavedArticlesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF2F7BD),
+      backgroundColor: Color(0xffFFDAB9),
       body: SafeArea(
           child:   Column(
             children: [
