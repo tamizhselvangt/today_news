@@ -1,16 +1,15 @@
-
-
+import 'package:day_today/pages/introPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-class ExamplePage extends StatelessWidget {
-  const ExamplePage({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffC8A2C8),
+      backgroundColor:  Color(0xffD4B1D6),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -73,9 +72,9 @@ class ExamplePage extends StatelessWidget {
                       fontSize: 20,
                     ),),
                   style: ElevatedButton.styleFrom(
-                    fixedSize: Size(0, 50),
-                    elevation: 5.0,
-                    backgroundColor:  Color(0xffffd9e2)
+                      fixedSize: Size(0, 50),
+                      elevation: 5.0,
+                      backgroundColor:  Color(0xffffd9e2)
                   ),
                 ),
               ),
@@ -83,12 +82,12 @@ class ExamplePage extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                 TextButton(
+                  TextButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor:  Colors.transparent
                       ),
                       onPressed:(){},
-                     child: settingsButtons(title: "Setting", icon: Icons.settings,)),
+                      child: settingsButtons(title: "Setting", icon: Icons.settings,)),
                   Gap(20),
                   TextButton(
                       style: ElevatedButton.styleFrom(
@@ -103,20 +102,27 @@ class ExamplePage extends StatelessWidget {
                       ),
                       onPressed:(){},
                       child: settingsButtons(title: "Languages", icon: Icons.language_rounded,)),
-                  Gap(100),
+                  Gap(50),
                 ],
               ),
               SizedBox(
                 width: 230,
                 child: ElevatedButton(
                   onPressed: () async {
+
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (cotext)=> Introduction()));
                   },
-                  child: Text("Log out",
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontFamily: "PolySans",
-                      fontSize: 20,
-                    ),),
+                  child: Row(
+                    children: [
+                      Icon(Icons.logout_rounded),
+                      Text("Log out",
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontFamily: "PolySans",
+                          fontSize: 20,
+                        ),),
+                    ],
+                  ),
                   style: ElevatedButton.styleFrom(
                       fixedSize: Size(0, 50),
                       elevation: 5.0,

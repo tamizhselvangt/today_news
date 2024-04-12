@@ -114,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                  SocialLoginButton(
                                    height: 50,
                                    width: 300,
-                                   borderRadius: 30,
+                                   borderRadius: 10,
                                    buttonType: SocialLoginButtonType.google,
                                    onPressed: () {},
                                  ),
@@ -122,7 +122,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                  SocialLoginButton(
                                    height: 50,
                                    width: 300,
-                                   borderRadius: 30,
+                                   borderRadius: 10,
                                    buttonType: SocialLoginButtonType.appleBlack,
                                    onPressed: () {},
                                  ),
@@ -132,7 +132,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                    imageURL: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png",
                                    height: 50,
                                    width: 300,
-                                   borderRadius: 30,
+                                   borderRadius: 10,
                                    buttonType: SocialLoginButtonType.facebook,
                                    onPressed: () {},
                                  ),

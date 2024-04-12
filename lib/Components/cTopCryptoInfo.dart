@@ -1,9 +1,9 @@
 import 'package:chart_sparkline/chart_sparkline.dart';
 import 'package:flutter/material.dart';
 
-class Item extends StatelessWidget {
+class TopCryptoInfoWidget extends StatelessWidget {
   var item;
-  Item({this.item});
+  TopCryptoInfoWidget({this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class Item extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Container(
-                  height: myHeight * 0.05, child: Image.network(item.image)),
+                  height: myHeight * 0.09, child: Image.network(item.image)),
             ),
             SizedBox(
               width: myWidth * 0.02,
@@ -31,12 +31,12 @@ class Item extends StatelessWidget {
                 children: [
                   Text(
                     item.id,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    '0.4 ' + item.symbol,
+                     item.symbol,
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 15,
                         fontWeight: FontWeight.normal,
                         color: Colors.grey),
                   ),
@@ -47,7 +47,7 @@ class Item extends StatelessWidget {
               flex: 2,
               child: Container(
                 height: myHeight * 0.05,
-                // width: myWidth * 0.2,
+                width: myWidth * 0.2,
                 child: Sparkline(
                   data: item.sparklineIn7D.price,
                   lineWidth: 2.0,
@@ -75,7 +75,7 @@ class Item extends StatelessWidget {
                 children: [
                   Text(
                     '\$ ' + item.currentPrice.toString(),
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                   ),
                   Row(
                     children: [
@@ -88,7 +88,7 @@ class Item extends StatelessWidget {
                                 .replaceAll('-', '')
                             : "\$" + item.priceChange24H.toStringAsFixed(2),
                         style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 11,
                             fontWeight: FontWeight.normal,
                             color: Colors.grey),
                       ),
@@ -99,7 +99,7 @@ class Item extends StatelessWidget {
                         item.marketCapChangePercentage24H.toStringAsFixed(2) +
                             '%',
                         style: TextStyle(
-                            fontSize: 11,
+                            fontSize: 10,
                             fontWeight: FontWeight.normal,
                             color: item.marketCapChangePercentage24H >= 0
                                 ? Colors.green

@@ -1,3 +1,4 @@
+import 'package:day_today/pages/signUpPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -10,6 +11,7 @@ import 'dart:math';
 import 'package:day_today/pages/savedPage.dart';
 import 'package:day_today/pages/searchPage.dart';
 import 'package:flutter/services.dart';
+import 'package:day_today/pages/profilePage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -32,7 +34,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
     }else if(selectedPAge == "Saved"){
       return SavedArticlesPage();
-    }else{
+    }else if(selectedPAge == "Profile"){
+      return ProfilePage();
+    }
+    else{
       return HomeScreen();
     }
   }
@@ -41,7 +46,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       return  Color(0xFFBAA7E3);
     }else if(selectedPAge == "Saved"){
       return  Color(0xffFFCDA5);
-    }else{
+    }else if(selectedPAge == "Profile"){
+      return Color(0xffC8A2C8);
+    }
+    else{
       return Colors.transparent;
     }
   }
@@ -187,6 +195,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             GestureDetector(
               onTap: () {
                 HapticFeedback.selectionClick();
+                setState(() {
+                  selectedPAge = "Profile";
+                });
               },
               child: Container(
                 height: 30,

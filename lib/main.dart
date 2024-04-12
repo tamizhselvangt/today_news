@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
                 cursorColor: Colors.black,
           )
         ),
-        // home: Introduction(),
+        home: Introduction(),
         // home: HomePage(),
-        home: ExamplePage(),
+        // home: ExamplePage(),
         // home: CryptoPage(),
       ),
     );

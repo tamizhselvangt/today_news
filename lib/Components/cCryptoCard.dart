@@ -1,9 +1,9 @@
 import 'package:day_today/pages/finace/selecedCoin.dart';
 import 'package:flutter/material.dart';
 
-class Item2 extends StatelessWidget {
+class CryptoCard extends StatelessWidget {
   var item;
-  Item2({this.item});
+  CryptoCard({this.item});
 
   @override
   Widget build(BuildContext context) {

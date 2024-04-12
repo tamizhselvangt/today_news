@@ -1,6 +1,6 @@
 import 'package:day_today/utilities/coinModel.dart';
-import 'package:day_today/Components/cItem.dart';
-import 'package:day_today/Components/cItem2.dart';
+import 'package:day_today/Components/cTopCryptoInfo.dart';
+import 'package:day_today/Components/cCryptoCard.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -133,7 +133,7 @@ class _CryptoPageState extends State<CryptoPage> {
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return Item(
+                        return TopCryptoInfoWidget(
                           item: coinMarket![index],
                         );
                       },
@@ -174,7 +174,7 @@ class _CryptoPageState extends State<CryptoPage> {
                           scrollDirection: Axis.horizontal,
                           itemCount: coinMarket!.length,
                           itemBuilder: (context, index) {
-                            return Item2(
+                            return CryptoCard(
                               item: coinMarket![index],
                             );
                           },
