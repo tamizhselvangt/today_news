@@ -15,5 +15,6 @@ class ChartModel {
       low: l[3] == null ? null : l[3]!,
       close: l[4] == null ? null : l[4]!,
     );
+
   }
 }

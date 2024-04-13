@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:day_today/utilities/selectedDomain.dart';
-import 'pages/HomePage.dart';
+import 'pages/mainPages/HomePage.dart';
 import 'pages/Example.dart';
 import 'pages/introPage.dart';
 import 'package:provider/provider.dart';
-import 'package:day_today/pages/finace/cryptoPage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return
+      MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => SelectedDomain()),
       ],
@@ -26,10 +27,10 @@ class MyApp extends StatelessWidget {
                 cursorColor: Colors.black,
           )
         ),
-        home: Introduction(),
+        // home: Introduction(),
         // home: HomePage(),
-        // home: ExamplePage(),
-        // home: CryptoPage(),
+        home: ExamplePage(),
+        // home: ForexPage(),
       ),
     );
   }

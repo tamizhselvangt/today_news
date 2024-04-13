@@ -8,10 +8,10 @@ import 'package:day_today/utilities/selectedDomain.dart';
 import "package:day_today/constants/constants.dart";
 import 'package:day_today/pages/sideMenu.dart';
 import 'dart:math';
-import 'package:day_today/pages/savedPage.dart';
-import 'package:day_today/pages/searchPage.dart';
+import 'package:day_today/pages/mainPages/savedPage.dart';
+import 'package:day_today/pages/mainPages/searchPage.dart';
 import 'package:flutter/services.dart';
-import 'package:day_today/pages/profilePage.dart';
+import 'package:day_today/pages/mainPages/profilePage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

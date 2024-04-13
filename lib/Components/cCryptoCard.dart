@@ -1,4 +1,4 @@
-import 'package:day_today/pages/finace/selecedCoin.dart';
+import 'package:day_today/pages/finace/selecedCoinPage.dart';
 import 'package:flutter/material.dart';
 
 class CryptoCard extends StatelessWidget {

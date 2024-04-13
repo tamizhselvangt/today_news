@@ -23,19 +23,19 @@ class _CryptoPageState extends State<CryptoPage> {
     double myWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffabc4ff),
+        backgroundColor: const Color(0xffabc4ff),
       ),
       body: Container(
         height: myHeight,
         width: myWidth,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color(0xffabc4ff)
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: 15),
+              padding: const EdgeInsets.only(left: 15),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -45,7 +45,7 @@ class _CryptoPageState extends State<CryptoPage> {
                     decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(5)),
-                    child: Text(
+                    child: const Text(
                       'Main portfolio',
                       style: TextStyle(fontSize: 18),
                     ),
@@ -55,7 +55,7 @@ class _CryptoPageState extends State<CryptoPage> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: myWidth * 0.07),
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -67,7 +67,7 @@ class _CryptoPageState extends State<CryptoPage> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: myWidth * 0.07),
-              child: Row(
+              child: const Row(
                 children: [
                   Text(
                     '+162% all time',
@@ -85,21 +85,21 @@ class _CryptoPageState extends State<CryptoPage> {
                         blurRadius: 5,
                         color: Colors.grey.shade300,
                         spreadRadius: 3,
-                        offset: Offset(0, 3))
+                        offset: const Offset(0, 3))
                   ],
-                  color:Color(0xffF1F5FF),
-                  borderRadius: BorderRadius.only(
+                  color:const Color(0xffF1F5FF),
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50),
                   )),
               child: ListView(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                    height: 20,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: myWidth * 0.08),
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
@@ -113,7 +113,7 @@ class _CryptoPageState extends State<CryptoPage> {
                   Container(
                     height: myHeight * 0.5,
                     child: isRefreshing == true
-                        ? Center(
+                        ? const Center(
                       child: CircularProgressIndicator(
                         color: Color(0xffFBC700),
                       ),
@@ -121,7 +121,7 @@ class _CryptoPageState extends State<CryptoPage> {
                         : coinMarket == null || coinMarket!.length == 0
                         ? Padding(
                       padding: EdgeInsets.all(myHeight * 0),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'Attention this Api is free, so you cannot send multiple requests per second, please wait and try again later.',
                           style: TextStyle(fontSize: 18),
@@ -131,7 +131,7 @@ class _CryptoPageState extends State<CryptoPage> {
                         : ListView.builder(
                       itemCount: 4,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         return TopCryptoInfoWidget(
                           item: coinMarket![index],
@@ -139,10 +139,10 @@ class _CryptoPageState extends State<CryptoPage> {
                       },
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: myWidth * 0.05),
-                    child: Text(
+                    child: const Text(
                       'Recommend to Buy',
                       style: TextStyle(
                           fontSize: 22, fontWeight: FontWeight.bold),
@@ -155,7 +155,7 @@ class _CryptoPageState extends State<CryptoPage> {
                       padding: EdgeInsets.only(left: myWidth * 0.03),
                       child: Container(
                         child: isRefreshing == true
-                            ? Center(
+                            ? const Center(
                           child: CircularProgressIndicator(
                             color: Color(0xffFBC700),
                           ),
@@ -163,7 +163,7 @@ class _CryptoPageState extends State<CryptoPage> {
                             : coinMarket == null || coinMarket!.length == 0
                             ? Padding(
                           padding: EdgeInsets.all(myHeight * 0.06),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               'Attention this Api is free, so you cannot send multiple requests per second, please wait and try again later.',
                               style: TextStyle(fontSize: 18),

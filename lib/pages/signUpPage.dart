@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
-import 'package:day_today/pages/HomePage.dart';
+import 'package:day_today/pages/mainPages/HomePage.dart';
 // import 'package:get/get.dart';
 // import 'package:sign_button/sign_button.dart';
 import 'package:custom_signin_buttons/custom_signin_buttons.dart';
