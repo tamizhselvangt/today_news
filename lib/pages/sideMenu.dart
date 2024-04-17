@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:day_today/constants/constants.dart';
 import 'package:gap/gap.dart';
 import 'package:day_today/pages/finace/cryptoPage.dart';
+import 'package:day_today/pages/calendarPage.dart';
 
 class SideMenu extends StatelessWidget {
   final color;
@@ -12,7 +13,7 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        // width: 288,
+        width: 288,
         height: double.infinity,
         color: color,
         child: SafeArea(
@@ -24,6 +25,7 @@ class SideMenu extends StatelessWidget {
               ),
               InfoCard(
                 name: "Tamizhselavn",
+                emailId: "tamizhselvangt@gmail.com",
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0),
@@ -33,7 +35,7 @@ class SideMenu extends StatelessWidget {
                     children: [
                       Text("Features",
                           style: TextStyle(
-                              fontSize: 3,
+                              fontSize: 25,
                               fontFamily: "PolySans",
                               color: Colors.black,
                               fontWeight: FontWeight.w500)),
@@ -69,7 +71,7 @@ class SideMenu extends StatelessWidget {
                       TextButton(
                           onPressed: (){
                             Navigator.push(context,
-                                MaterialPageRoute(builder: (context)=> CryptoPage()));
+                                MaterialPageRoute(builder: (context)=> CalenderPage()));
                           },
                           child: Text("   Calender", style: kSideMenuTitleStyle)),
                       Gap(10),
@@ -85,27 +87,27 @@ class SideMenu extends StatelessWidget {
 
 class InfoCard extends StatelessWidget {
   final String? name;
-  final String? profession;
-  const InfoCard({this.name, this.profession});
+  final String? emailId;
+  const InfoCard({this.name, this.emailId});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const CircleAvatar(
+      leading:  CircleAvatar(
         backgroundColor: Colors.white54,
-        child: Icon(
-          CupertinoIcons.person_solid,
-          color: Colors.white,
-        ),
+        child: Image.network("https://pngall.com/wp-content/uploads/5/User-Profile-PNG-Picture.png",)
       ),
       title: Text(
         "$name",
         style:
-            const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            const TextStyle(
+                fontSize: 18,
+                color: Colors.black, fontWeight: FontWeight.w500),
       ),
-      subtitle: Text("$profession",
+      subtitle: Text("$emailId",
           style: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.w200)),
+              fontSize: 12,
+              color: Colors.black54, fontWeight: FontWeight.w200)),
     );
   }
 }

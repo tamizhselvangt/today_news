@@ -132,7 +132,7 @@ class _SelectCoinState extends State<SelectCoin> {
                                 Text(
                                   '\$' + widget.selectItem.low24H.toString(),
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.normal,
                                       color: Colors.black),
                                 ),
@@ -153,7 +153,7 @@ class _SelectCoinState extends State<SelectCoin> {
                                 Text(
                                   '\$' + widget.selectItem.high24H.toString(),
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.normal,
                                       color: Colors.black),
                                 ),
@@ -176,7 +176,7 @@ class _SelectCoinState extends State<SelectCoin> {
                                       widget.selectItem.totalVolume.toString() +
                                       'M',
                                   style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.normal,
                                       color: Colors.black),
                                 ),
@@ -284,16 +284,13 @@ class _SelectCoinState extends State<SelectCoin> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: myHeight * 0.04,
-                      ),
                       Expanded(
                           child: ListView(
                             children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: myWidth * 0.06),
                                 child: Text(
-                                  'News',
+                                  'Price',
                                   style: TextStyle(fontSize: 25),
                                 ),),
                                 Padding(
@@ -305,10 +302,10 @@ class _SelectCoinState extends State<SelectCoin> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                                          'The Current Rate of the \n ${widget.selectItem.id} is \$${widget.selectItem.totalVolume.toString()}',
                                           textAlign: TextAlign.justify,
                                           style:
-                                          TextStyle(color: Colors.grey, fontSize: 17),
+                                          TextStyle(color: Colors.black54, fontSize: 17),
                                         ),
                                       ),
                                     ],

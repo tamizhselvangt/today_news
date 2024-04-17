@@ -57,6 +57,9 @@ dependencies:
   bloc: ^8.1.4
   equatable: ^2.0.5
   flutter_bloc: ^8.1.5
+  flutter_calendar_carousel: ^2.4.2
+  googleapis_auth: ^1.1.0
+  googleapis: ^13.1.0
 
 dev_dependencies:
   flutter_test:
@@ -88,6 +91,7 @@ flutter:
     - assets/animations/newsAnimation.json
     - assets/images/facbookIcon.png
     - assets/images/
+    - assets/images/currencies/
     - assets/images/wave1.png
     - assets/images/altNewsPoster.jpeg
     - assets/fonts/

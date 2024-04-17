@@ -6,7 +6,7 @@ import 'package:day_today/utilities/fetchNewsApi.dart';
 import 'package:lottie/lottie.dart';
 import 'package:http/http.dart' as http;
 import 'package:day_today/pages/articlePage.dart';
-
+import 'package:like_button/like_button.dart';
 
 Widget articlePreviewCard(String searchQuery){
   return Column(
@@ -207,10 +207,15 @@ Widget articleBottomIcons(){
       children: [
         Row(
           children: [
-            Icon(Icons.favorite_border_outlined,
-              size: 25,),
+            LikeButton(
+                size: 23,
+                circleColor:  CircleColor(
+                    start: Color(0xff00ddff),
+                    end: Color(0xff0099cc))
+            ),
             SizedBox(width: 30,),
-            Icon(Icons.volume_up_outlined,size: 25,),
+            Icon(Icons.volume_up_outlined,size: 25,
+            color: Colors.black38,),
           ],
         ),
         Row(

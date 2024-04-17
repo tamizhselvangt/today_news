@@ -4,7 +4,7 @@ import 'pages/mainPages/HomePage.dart';
 import 'pages/Example.dart';
 import 'pages/introPage.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:day_today/pages/finace/forexPage.dart';
 void main() {
   runApp(const MyApp());
 }

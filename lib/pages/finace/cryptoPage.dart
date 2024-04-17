@@ -46,7 +46,7 @@ class _CryptoPageState extends State<CryptoPage> {
                         color: Colors.white.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(5)),
                     child: const Text(
-                      'Main portfolio',
+                      'Portfolio',
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -59,8 +59,12 @@ class _CryptoPageState extends State<CryptoPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '\$ 7,466.20',
-                    style: TextStyle(fontSize: 35),
+                    'Live Crypto Rates',
+                    style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: "PolySans",
+                    fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ],
               ),
@@ -104,9 +108,10 @@ class _CryptoPageState extends State<CryptoPage> {
                       children: [
                         Text(
                           'Assets',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20,
+                          fontFamily: "PolySans"),
                         ),
-                        Icon(Icons.add)
+                        // Icon(Icons.add)
                       ],
                     ),
                   ),

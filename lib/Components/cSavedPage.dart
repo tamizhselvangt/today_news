@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:like_button/like_button.dart';
 import 'package:flutter/cupertino.dart';
@@ -179,7 +180,11 @@ class SharedArticleCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Icon(Icons.ios_share_rounded,color: Colors.white70,),
+                    IconButton(
+                         onPressed: (){
+                           Share.share('check out my website https://example.com');
+                         },
+                        icon:Icon(Icons.ios_share_rounded,color: Colors.white70,)),
                     Icon(Icons.more_vert_outlined,color: Colors.white70,),
                     Gap(20)
                   ],

@@ -1,4 +1,3 @@
-import 'package:day_today/pages/signUpPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -20,21 +19,27 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  double turns = 0.0;
+  bool isMenuClicked = false;
+
+  late AnimationController _MenubarController;
+
+
   bool isSideMenuClosed = true;
 
   late AnimationController _animationController;
   late Animation<double> animation;
   late Animation<double> scalanimation;
-   var selectedPAge = "Home";
+   var selectedPage = "Home";
 
   Widget selectPage(String page){
-    if(selectedPAge =="Home"){
+    if(selectedPage =="Home"){
       return HomeScreen();
 
-    }else if(selectedPAge == "Saved"){
+    }else if(selectedPage == "Saved"){
       return SavedArticlesPage();
-    }else if(selectedPAge == "Profile"){
+    }else if(selectedPage == "Profile"){
       return ProfilePage();
     }
     else{
@@ -42,11 +47,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     }
   }
   Color pageColor(){
-    if(selectedPAge == "Home"){
+    if(selectedPage == "Home"){
       return  Color(0xFFBAA7E3);
-    }else if(selectedPAge == "Saved"){
+    }else if(selectedPage == "Saved"){
       return  Color(0xffFFCDA5);
-    }else if(selectedPAge == "Profile"){
+    }else if(selectedPage == "Profile"){
       return Color(0xffC8A2C8);
     }
     else{
@@ -55,6 +60,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
   @override
   void initState() {
+    _MenubarController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+
     _animationController =
     AnimationController(vsync: this, duration: Duration(milliseconds: 200))
       ..addListener(() {
@@ -70,9 +77,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   void dispose() {
+    _MenubarController.dispose();
     _animationController.dispose();
     super.dispose();
   }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -100,14 +109,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 scale: scalanimation.value,
                 child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(020)),
-                    child: selectPage(selectedPAge),
+                    child: selectPage(selectedPage),
                 )),
           ),
         ),
         SafeArea(
           child: IconButton(
               onPressed: () {
-                bool value = false;
                 setState(() {
                   if (isSideMenuClosed) {
                     _animationController.forward();
@@ -115,12 +123,25 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     _animationController.reverse();
                   }
                   isSideMenuClosed = !isSideMenuClosed;
+                  if(isMenuClicked){
+                    setState(() => turns -= 1/4);
+                    _MenubarController.reverse();
+                  }else{
+                    setState(() => turns += 1/4);
+                    _MenubarController.forward();
+                  }
+                  isMenuClicked = !isMenuClicked;
                 });
               },
-              icon: Icon(
-                Icons.menu_rounded,
-                size: 35.0,
-                color: Colors.black54,
+              icon: AnimatedRotation(
+                curve: Curves.easeOutExpo,
+                turns: turns,
+                duration: const Duration(seconds: 1),
+                child: AnimatedIcon(
+                  icon: AnimatedIcons.menu_close,
+                  size: 30,
+                  progress: _animationController,
+                )
               )),
         ),
       ]),
@@ -143,7 +164,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               onTap: () {
                 HapticFeedback.selectionClick();
                 setState(() {
-                  selectedPAge = "Home";
+                  selectedPage = "Home";
+
                 });
               },
               child: Container(
@@ -179,7 +201,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               onTap: () {
                 HapticFeedback.selectionClick();
                 setState(() {
-                selectedPAge = "Saved";
+                selectedPage = "Saved";
                 });
               },
               child: Container(
@@ -196,7 +218,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               onTap: () {
                 HapticFeedback.selectionClick();
                 setState(() {
-                  selectedPAge = "Profile";
+                  selectedPage = "Profile";
                 });
               },
               child: Container(
