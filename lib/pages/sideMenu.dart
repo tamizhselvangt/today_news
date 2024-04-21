@@ -1,3 +1,4 @@
+import 'package:day_today/pages/finace/forexPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:day_today/constants/constants.dart';
@@ -57,7 +58,7 @@ class SideMenu extends StatelessWidget {
                       TextButton(
                         onPressed: (){
                           Navigator.push(context,
-                          MaterialPageRoute(builder: (context)=> CryptoPage()));
+                          MaterialPageRoute(builder: (context)=> ForexPage()));
                         },
                           child: Text("   Forex", style: kSideMenuTitleStyle)),
                       Gap(10),

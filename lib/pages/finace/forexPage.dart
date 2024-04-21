@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:day_today/utilities/forexApi.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:day_today/utilities/forexApi.dart';
-
+import 'dart:convert';
 
 
 
@@ -15,82 +18,158 @@ class ForexPage extends StatefulWidget {
 }
 
 class _ForexPageState extends State<ForexPage> {
+  late TrackballBehavior trackballBehavior;
+   var  forexExchangeData;
+   var  candleData;
 
+  @override
+  void initState() {
+    forexExchangeData = forexExchange();
+    candleData = fetchCandleData();
+    trackballBehavior = TrackballBehavior(
+        enable: true, activationMode: ActivationMode.singleTap);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xffCDCDF4),
+        title: Text("EUR/USD",
+          style: TextStyle(
+              fontFamily: "PolySans",
+              fontSize: 25
+          ),),
+      ),
       backgroundColor: Color(0xffCDCDF4),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          SafeArea(
-            child: Container(
-              child: Column(
-                children: <Widget>[
-                  TextButton(onPressed: () async{
-                     forexExchange();
-                  }, child: Text("Press"))
-                ],
+          Expanded(
+            flex: 2,
+            child: SafeArea(
+              child: SizedBox(
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
+                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
+                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
+                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
+                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
+                      ],
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        width: double.infinity,
+                        child: FutureBuilder(
+                          future: candleData,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasError) {
+                              return Text('Error: ${snapshot.error}');
+                            } else if (snapshot.hasData) {
+                              final jsonData = jsonDecode(snapshot.data as String);
+                              final candleDataList = _parseForexData(jsonData);
+
+                              return SfCartesianChart(
+                                primaryXAxis: DateTimeAxis(),
+                                trackballBehavior: trackballBehavior,
+                                zoomPanBehavior: ZoomPanBehavior(
+                                    enablePinching: true, zoomMode: ZoomMode.x),
+                                series: [
+                                  CandleSeries<CandleData, DateTime>(
+                                    dataSource: candleDataList,
+                                    xValueMapper: (CandleData data, _) => data.timeStamp,
+                                    openValueMapper: (CandleData data, _) => data.open,
+                                    highValueMapper: (CandleData data, _) => data.high,
+                                    lowValueMapper: (CandleData data, _) => data.low,
+                                    closeValueMapper: (CandleData data, _) => data.close,
+                                  ),
+                                ],
+                              );
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  color: Color(0xfff40a0a),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-          Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height/2,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(65),
-                topRight: Radius.circular(65),
+          Expanded(
+            flex: 3,
+            child: Container(
+              height: MediaQuery.of(context).size.height/3,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(65),
+                  topRight: Radius.circular(65),
+                ),
               ),
-            ),
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 30),
-                Center(
-                  child: Text(
-                    'top 10 instruments'.toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.black54,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 30),
+                  Center(
+                    child: Text(
+                      'top 10 instruments'.toUpperCase(),
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height/2.3,
-                  child: FutureBuilder<List<Quote>>(
-                    future: forexExchange(),
-                    builder: (BuildContext context, AsyncSnapshot<List<Quote>> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return CircularProgressIndicator();
-                      } else if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      } else if(snapshot.hasData) {
-                        List<Quote> quotes = snapshot.data!;
-                        quotes = quotes.where((quote) => quote.baseCurrency != quote.quoteCurrency).toList();
-                        return ListView.builder(
-                          itemCount: quotes.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            Quote quote = quotes[index];
-
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TopTenInstrument(baseCurrency: quote.baseCurrency,
-                              quoteCurrency: quote.quoteCurrency,
-                              bidPrice: quote.bid,
-                              askPrice: quote.ask,
-                              midPoint: quote.midpoint,),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      child: FutureBuilder<List<Quote>>(
+                        future: forexExchangeData,
+                        builder: (BuildContext context, AsyncSnapshot<List<Quote>> snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: Color(0xff29f40a),
+                              ),
                             );
-                          },
-                        );
-                      }else{
-                        return Text("The request has an error");
-                      }
-                    },
-                  ),
-                )
-              ],
+                          } else if (snapshot.hasError) {
+                            return Text('Error: ${snapshot.error}');
+                          } else if(snapshot.hasData) {
+                            List<Quote> quotes = snapshot.data!;
+                            quotes = quotes.where((quote) => quote.baseCurrency != quote.quoteCurrency).toList();
+                            return ListView.builder(
+                              itemCount: quotes.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                Quote quote = quotes[index];
+
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TopTenInstrument(baseCurrency: quote.baseCurrency,
+                                  quoteCurrency: quote.quoteCurrency,
+                                  bidPrice: quote.bid,
+                                  askPrice: quote.ask,
+                                  midPoint: quote.midpoint,),
+                                );
+                              },
+                            );
+                          }else{
+                            return Text("The request has an error");
+                          }
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ],
@@ -101,9 +180,6 @@ class _ForexPageState extends State<ForexPage> {
 
 
 class TopTenInstrument extends StatelessWidget {
-
-
-
 
   final baseCurrency;
   final quoteCurrency;
@@ -232,3 +308,21 @@ class TopTenInstrument extends StatelessWidget {
 
 
 
+List<CandleData> _parseForexData(Map<String, dynamic> jsonData) {
+  final forexDataList = <CandleData>[];
+
+  final timeSeries = jsonData['Time Series FX (5min)'] as Map<String, dynamic>;
+  timeSeries.forEach((time, data) {
+    final parsedTime = DateTime.parse(time);
+    final forexData = CandleData(
+      timeStamp: parsedTime,
+      open: double.parse(data['1. open']),
+      high: double.parse(data['2. high']),
+      low: double.parse(data['3. low']),
+      close: double.parse(data['4. close']),
+    );
+    forexDataList.add(forexData);
+  });
+
+  return forexDataList;
+}

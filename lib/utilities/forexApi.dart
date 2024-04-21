@@ -23,10 +23,31 @@ class Quote {
   }
 }
 
+class CandleData {
+  DateTime timeStamp;
+  double open;
+  double high;
+  double low;
+  double close;
 
+  CandleData({
+    required this.timeStamp,
+    required this.open,
+    required this.high,
+    required this.low,
+    required this.close,
+  });
 
-
-
+  factory CandleData.fromJson(Map<String, dynamic> json) {
+    return CandleData(
+      timeStamp: DateTime.parse(json['time']),
+      open: double.parse(json['1. open']),
+      high: double.parse(json['2. high']),
+      low: double.parse(json['3. low']),
+      close: double.parse(json['4. close']),
+    );
+  }
+}
 
 
 Future<List<Quote>> forexExchange() async {
@@ -47,3 +68,22 @@ Future<List<Quote>> forexExchange() async {
     return [];
   }
 }
+
+
+
+Future<String> fetchCandleData() async {
+  final response = await http.get(Uri.parse('https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol=EUR&to_symbol=USD&interval=5min&apikey=demo'));
+
+  if (response.statusCode == 200) {
+    return response.body;
+  } else {
+    throw Exception('Failed to load data');
+  }
+}
+
+
+
+
+
+
+

@@ -86,7 +86,9 @@ class ProfilePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           backgroundColor:  Colors.transparent
                       ),
-                      onPressed:(){},
+                      onPressed:(){
+
+                      },
                       child: settingsButtons(title: "Setting", icon: Icons.settings,)),
                   Gap(20),
                   TextButton(

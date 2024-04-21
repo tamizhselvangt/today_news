@@ -11,6 +11,7 @@ import 'package:day_today/pages/mainPages/savedPage.dart';
 import 'package:day_today/pages/mainPages/searchPage.dart';
 import 'package:flutter/services.dart';
 import 'package:day_today/pages/mainPages/profilePage.dart';
+import 'package:day_today/pages/finace/forexPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
