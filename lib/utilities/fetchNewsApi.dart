@@ -33,9 +33,6 @@ class NewsArticle {
 }
 
 
-
-
-
 // Define a Future<NewsArticle> function to fetch the news article data
 Future<List<NewsArticle>> fetchNewsArticle(String searchQuery) async {
 

@@ -70,6 +70,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '927760867716',
     projectId: 'day-today-dfdaf',
     storageBucket: 'day-today-dfdaf.appspot.com',
+    androidClientId: '927760867716-t3ttc61fgfg9osda4misakg7pachians.apps.googleusercontent.com',
+    iosClientId: '927760867716-v1dkqpmck9q5q6nr2tcdimi84bs235v6.apps.googleusercontent.com',
     iosBundleId: 'com.tamizhselvan.todayNews',
   );
+
 }

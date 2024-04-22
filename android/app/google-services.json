@@ -12,7 +12,20 @@
           "package_name": "com.tamizhselvan.day_today"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "927760867716-t3ttc61fgfg9osda4misakg7pachians.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tamizhselvan.day_today",
+            "certificate_hash": "b417f15fdd207f99ff7eded77b47601df2d63f1a"
+          }
+        },
+        {
+          "client_id": "927760867716-cutjh4p02obl74icjj4p07asl426lj54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAtYFFxyUvV5tdWOV4xsBx76tQqvXWJr-A"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "927760867716-cutjh4p02obl74icjj4p07asl426lj54.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "927760867716-v1dkqpmck9q5q6nr2tcdimi84bs235v6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tamizhselvan.todayNews"
+              }
+            }
+          ]
         }
       }
     }

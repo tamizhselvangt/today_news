@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +7,13 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:day_today/pages/mainPages/HomePage.dart';
-// import 'package:get/get.dart';
-// import 'package:sign_button/sign_button.dart';
-import 'package:custom_signin_buttons/custom_signin_buttons.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+
+
+
 
 class SignUpPage extends StatefulWidget {
   static const String id = 'SignUp_Page';
@@ -119,13 +122,13 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                    onPressed: () {},
                                  ),
                                  SizedBox(height: 20),
-                                 SocialLoginButton(
+                                 Platform.isIOS ? SocialLoginButton(
                                    height: 50,
                                    width: 300,
                                    borderRadius: 10,
                                    buttonType: SocialLoginButtonType.appleBlack,
                                    onPressed: () {},
-                                 ),
+                                 ) : Gap(0),
                                  SizedBox(height: 20),
                                  SocialLoginButton(
                                    backgroundColor: Color(0xff0866FF),

@@ -60,6 +60,8 @@ dependencies:
   flutter_calendar_carousel: ^2.4.2
   googleapis_auth: ^1.1.0
   googleapis: ^13.1.0
+  google_sign_in: ^6.2.1
+  firebase_auth: ^4.19.2
 
 dev_dependencies:
   flutter_test:
