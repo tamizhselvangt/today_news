@@ -1,11 +1,28 @@
 import 'package:day_today/pages/introPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+   ProfilePage({super.key});
 
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  User? _user;
+
+  @override
+  void initState() {
+    super.initState();
+    _auth.authStateChanges().listen((event) { setState(() {
+      _user = event;
+    });});
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +36,8 @@ class ProfilePage extends StatelessWidget {
               Stack(
                 children: [
                   CircleAvatar(
-                    backgroundColor: Colors.white54,
-                    child: Image.network("https://pngall.com/wp-content/uploads/5/User-Profile-PNG-Picture.png",),
+                    // backgroundColor: Colors.white54,
+                   backgroundImage: _user==null ? NetworkImage("https://pngall.com/wp-content/uploads/5/User-Profile-PNG-Picture.png",) : NetworkImage(_user!.photoURL!),
                     radius: 55,
                   ),
                   Padding(
@@ -47,13 +64,14 @@ class ProfilePage extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: Text("Tamizhselvan Gurusamy",style: TextStyle(
+                child: Text(_user!=null ? _user!.displayName!  :"Tamizhselvan Gurusamy",style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w600,
                   fontFamily: "PolySans",
                 ),),
               ),
-              Text("tamizhselvangt@gmail.com",style: TextStyle(
+              Text( _user!=null ? _user!.email!  : "tamizhselvangt@gmail.com"
+                ,style: TextStyle(
                 fontSize: 18,
                 color: Colors.black54,
                 fontWeight: FontWeight.w600,

@@ -1,15 +1,20 @@
 import 'dart:ui';
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
+// import 'package:googleapis/apigeeregistry/v1.dart';
+// import 'package:googleapis/cloudfunctions/v2.dart';
 import 'package:lottie/lottie.dart';
 import 'package:day_today/pages/mainPages/HomePage.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:day_today/auth_Services/auth_service.dart';
+
+
 
 
 
@@ -23,10 +28,23 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateMixin {
+
+
+  String email="" , password="";
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+  final _emailKey = GlobalKey<FormState>();
+  final _passwordKey = GlobalKey<FormState>();
+
   bool isUserSelected = false;
   bool isPasswordSelected = false;
-  late AnimationController _animationController;
   var isSubmitted = false;
+
+  updateUI(){
+    setState(() {
+      isSubmitted = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,43 +73,28 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                   width: 200,): Lottie.asset("assets/animations/logInAnimation.json",
                       height: 200,
                       width: 200),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  CustomTextFeild(placeHolder: "User Name", obscureText: false),
-                  SizedBox(
-                    height: 25.0,
-                  ),
+                  Gap(20),
+                  ///USERName Text Feild
+                  emailIDTextFeild(placeHolder: "User Name", obscureText: false),
+                  Gap(25),
+                  ///Password TextFeild
                   passwordtextFeild(placeHolder: "Password", obscureText: true),
-                  SizedBox(
-                    height: 25.0,
-                  ),
+                  Gap(25),
                   SizedBox(
                     width: 280,
                     child: ElevatedButton(
                       onPressed: () async {
-                        setState(() {
-                          isSubmitted = true;
-                        });
-                        await Future.delayed(Duration(seconds: 3));
-                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+                        emailRegistration();
                       },
                       child: Text(
                         'SignIn',
                       ),
                       style: ElevatedButton.styleFrom(
                         elevation: 5.0,
-                        // backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        //         (Set<MaterialState> states) {
-                        //       return Colors.grey.shade50;
-                        //     }),
-                        // minimumSize: MaterialStateProperty.all(Size(25000, 45)),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 25.0,
-                  ),
+                  Gap(25),
                   TextButton(
                       onPressed: () {},
                       child: Text(
@@ -102,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                       )),
                   TextButton(
                       onPressed: () {
-                        showModalBottomSheet(context: context, builder:(BuildContext context){
+                        showModalBottomSheet(context: context, builder:(BuildContext BottomSheetcontext){
                           return Container(
                            height: 350,
                            decoration: BoxDecoration(
@@ -119,9 +122,24 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                    width: 300,
                                    borderRadius: 10,
                                    buttonType: SocialLoginButtonType.google,
-                                   onPressed: () {},
+                                   onPressed: () async{
+                                     Navigator.pop(BottomSheetcontext);
+                                     var googleAuth = await AuthService().signInWithGoogle();
+
+                                     if(googleAuth!=null) {
+                                       setState(() {
+                                         isSubmitted = true;
+                                       });
+                                       await Future.delayed(
+                                           Duration(seconds: 3));
+                                       Navigator.pushReplacement(context,
+                                           MaterialPageRoute(
+                                               builder: (context) =>
+                                                   HomePage()));
+                                     }
+                                   },
                                  ),
-                                 SizedBox(height: 20),
+                                Gap(20),
                                  Platform.isIOS ? SocialLoginButton(
                                    height: 50,
                                    width: 300,
@@ -137,14 +155,17 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                    width: 300,
                                    borderRadius: 10,
                                    buttonType: SocialLoginButtonType.facebook,
-                                   onPressed: () {},
+                                   onPressed: () {
+                                     Navigator.pop(context);
+                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+                                   },
                                  ),
                                ],
                              ),
                           );
                         });
                       },
-                      child: Text(
+                      child: const Text(
                         'Don\'t have account? Sign up',
                         style: TextStyle(
                           // color: Colors.green.shade400
@@ -154,8 +175,8 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                     color: Color(0xFF9DA9A5),
                     height: 25,
                     thickness: 1,
-                    indent: 5,
-                    endIndent: 5,
+                    indent: 25,
+                    endIndent: 25,
                   ),
                   SizedBox(
                     height: 20.0,
@@ -170,7 +191,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
     );
   }
 
-  Stack CustomTextFeild({@required placeHolder, @required obscureText}) {
+  Stack emailIDTextFeild({@required placeHolder, @required obscureText}) {
     return Stack(
       children: [
         Padding(
@@ -201,45 +222,55 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
             color: Color(0xffe5a3a3),
             borderRadius: BorderRadius.circular(10.0),
           ),
-          child: TextField(
-            style: TextStyle(
-                fontFamily: "PolySans",
-                fontSize: 20,
-                fontWeight: FontWeight.w500),
-            onTap: () {
-              setState(() {
-                isUserSelected = true;
-                isPasswordSelected = false;
-              });
-            },
-            onTapOutside: (_) {
-              setState(() {
-                isUserSelected = false;
-              });
-            },
-            obscureText: obscureText,
-            decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
-                      width: 2,
-                      color: Colors.black),
-                ),
-                border:
-                OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
-                labelText: placeHolder,
-                hintText: "example@gmail.com",
-                hintStyle: TextStyle(
-                    color: Colors.white54,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w100
-                )
+          child: Form(
+            key: _emailKey,
+            child: TextFormField(
+              validator: (value){
+                if(value==null||value.isEmpty){
+                  return "Please Enter a Valide Email";
+                }
+                return null;
+              },
+              controller: emailController,
+              style: TextStyle(
+                  fontFamily: "PolySans",
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500),
+              onTap: () {
+                setState(() {
+                  isUserSelected = true;
+                  isPasswordSelected = false;
+                });
+              },
+              onTapOutside: (_) {
+                setState(() {
+                  isUserSelected = false;
+                });
+              },
+              obscureText: obscureText,
+              decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide(
+                        width: 2,
+                        color: Colors.black),
+                  ),
+                  border:
+                  OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0)
+                  ),
+                  labelText: placeHolder,
+                  hintText: "example@gmail.com",
+                  hintStyle: TextStyle(
+                      color: Colors.white54,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w100
+                  )
+              ),
             ),
           ),
         ),
@@ -278,43 +309,101 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
             borderRadius: BorderRadius.circular(10),
           ),
 
-          child: TextField(
-            onTap: () {
-              setState(() {
-                isPasswordSelected = true;
-                isUserSelected = false;
-              });
-            },
-            onTapOutside: (_) {
-              setState(() {
-                isPasswordSelected = false;
-              });
-            },
-            obscureText: obscureText,
-            decoration: InputDecoration(
-              // hintText: "Password",
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
-                      width: 2,
-                      color: Colors.black),
-                ),
-                // border: OutlineInputBorder(borderRadius: BorderRadius.circular(0.0)),
-                labelText: placeHolder,
-                labelStyle: TextStyle(
-                  fontWeight: FontWeight.w100,
-                  fontFamily: "PolySans",
-                  fontSize: 18,
-                  // fontWeight: FontWeight.w400
-                )
+          child: Form(
+            key: _passwordKey,
+            child: TextFormField(
+              validator: (value){
+                if(value==null||value.isEmpty){
+                  return "Please Enter a Correct password";
+                }
+                return null;
+              },
+              onTap: () {
+                setState(() {
+                  isPasswordSelected = true;
+                  isUserSelected = false;
+                });
+              },
+              onTapOutside: (_) {
+                setState(() {
+                  isPasswordSelected = false;
+                });
+              },
+              controller: passwordController,
+              obscureText: obscureText,
+              decoration: InputDecoration(
+                // hintText: "Password",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                        width: 2,
+                        color: Colors.black),
+                  ),
+                  // border: OutlineInputBorder(borderRadius: BorderRadius.circular(0.0)),
+                  labelText: placeHolder,
+                  labelStyle: TextStyle(
+                    fontWeight: FontWeight.w100,
+                    fontFamily: "PolySans",
+                    fontSize: 18,
+                    // fontWeight: FontWeight.w400
+                  )
+              ),
             ),
           ),
         ),
       ],
     );
   }
+
+  void emailRegistration() async {
+  if(password!=null){
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Registered Successfully")));
+      setState(() {
+        isSubmitted = true;
+      });
+      await Future.delayed(Duration(seconds: 3));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+    }on FirebaseAuthException catch (e){
+      if(e.code == "weak-password"){
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Password Provided is too weak")));
+      }else if(e.code == "email-already-in-use"){
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email is already Registered")));
+      }
+    }
+  }
+  }
+
+  Future<void> authenticateWithGoogle({required BuildContext context})async{
+    try{
+      Navigator.pop(context);
+      var googleAuth = await AuthService().signInWithGoogle();
+      print(googleAuth);
+      setState(() {
+        isSubmitted = true;
+      });
+      await Future.delayed(Duration(seconds: 3));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+
+    }catch(e){
+      print(e);
+      AlertDialog(
+        content: Text("Authentication Not Permitted "
+            "Try agai!"),
+
+      );
+    }
+  }
 }
+
+
+
+
+
+

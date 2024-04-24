@@ -5,7 +5,10 @@ import 'pages/Example.dart';
 import 'pages/introPage.dart';
 import 'package:provider/provider.dart';
 import 'package:day_today/pages/finace/forexPage.dart';
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
