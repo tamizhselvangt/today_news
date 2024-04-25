@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+    <key>NSAllowsArbitraryLoadsInWebContent</key>
+    <true/>
+</dict>
+<key>io.flutter.embedded_views_preview</key>
+<string>YES</string>
 <key>CFBundleURLTypes</key>
 <array>
 	<dict>
@@ -10,9 +19,16 @@
 		<key>CFBundleURLSchemes</key>
 		<array>
 			<string>com.googleusercontent.apps.927760867716-v1dkqpmck9q5q6nr2tcdimi84bs235v6</string>
+			 <string>fb809617711036638</string>
 		</array>
 	</dict>
 </array>
+  <key>FacebookAppID</key>
+  <string>809617711036638</string>
+  <key>FacebookClientToken</key>
+  <string>9133c450ff8455c42c25d8a96a7b5091</string>
+  <key>FacebookDisplayName</key>
+  <string>DayToday</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

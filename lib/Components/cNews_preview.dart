@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,23 @@ import 'package:lottie/lottie.dart';
 import 'package:http/http.dart' as http;
 import 'package:day_today/pages/articlePage.dart';
 import 'package:like_button/like_button.dart';
+import 'package:intl/intl.dart';
+
+
 
 Widget articlePreviewCard(String searchQuery){
+
+
+
+  int timeDifference(String time) {
+    String givenDateTimeString = time;
+    DateTime givenDateTime = DateFormat('yyyy-MM-dd\'T\'HH:mm:ssZ').parse(givenDateTimeString);
+    DateTime now = DateTime.now();
+    Duration difference = now.difference(givenDateTime);
+    double differenceInDays = difference.inDays.toDouble();
+    return differenceInDays.toInt();
+  }
+
   return Column(
     children: [
       Expanded(
@@ -20,6 +36,7 @@ Widget articlePreviewCard(String searchQuery){
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                   final article = snapshot.data![index];
+                  var time = timeDifference(article.publishedAt!);
                   if (article.description == null || article.description!.isEmpty) return Container();
                   if (article.urlToImage == null || article.description!.isEmpty) return Container();
                    return GestureDetector(
@@ -28,7 +45,12 @@ Widget articlePreviewCard(String searchQuery){
                            MaterialPageRoute(
                            builder: (context) => ArticlePage(
                            title: article.title!,
-                           posterUrl: article.urlToImage!)));
+                           posterUrl: article.urlToImage!,
+                           description: article.description,
+                           source: article.source,
+                           time: article.publishedAt,
+                           url: article.url,
+                           )));
                        },
                      child: Container(
                        decoration: const BoxDecoration(
@@ -53,7 +75,7 @@ Widget articlePreviewCard(String searchQuery){
                                 const SizedBox(height: 10,),
                                 articlePrevieDescription(article.description!),
                                 const SizedBox(height: 20,),
-                                articleBottomIcons(),
+                                articleBottomIcons(time),
                               ],
                             ),
                           ),
@@ -199,9 +221,9 @@ Widget articlePrevieDescription(String description){
   );
 }
 
-Widget articleBottomIcons(){
-  return const SizedBox(
-    height: 20,
+Widget articleBottomIcons(int time){
+  return SizedBox(
+    height: 23,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -220,9 +242,10 @@ Widget articleBottomIcons(){
         ),
         Row(
           children: [
-            Icon(Icons.access_time),
+            Icon(Icons.access_time,
+            size: 25,),
 
-            Text(" 17 houres ago",
+            Text("  ${time} days ago",
               style: TextStyle(
                   fontSize: 18,
                   color: Colors.black45

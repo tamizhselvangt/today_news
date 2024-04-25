@@ -1,7 +1,9 @@
+import 'package:day_today/pages/webViewPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:day_today/constants/constants.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 
 Text articleTitle(String title) {
@@ -30,7 +32,7 @@ Align newsHeadLine() {
           left: 0,
           right: 0,
           child: Container(
-            height: 14,
+            height: 10,
             decoration: const BoxDecoration(color: Color(0xfff3e386),),
           ),
         ),
@@ -46,11 +48,11 @@ Align newsHeadLine() {
   );
 }
 
-RichText articleContent() {
+RichText articleContent(String content) {
   return  RichText(
-      text: const TextSpan(
+      text: TextSpan(
           text:
-          "In the depths of the ocean, where sunlight struggles to penetrate, lies a realm of mystery and power: underwater volcanoes. These geological marvels, often hidden from human eyes, play a crucial role in shaping the Earth's surface and influencing oceanic ecosystems in ways we are only beginning to understand.\n\n"
+          "${content} In the depths of the ocean, where sunlight struggles to penetrate, lies a realm of mystery and power: underwater volcanoes. These geological marvels, often hidden from human eyes, play a crucial role in shaping the Earth's surface and influencing oceanic ecosystems in ways we are only beginning to understand.\n\n"
               "Scientists have long been intrigued by these submerged giants, which differ in many ways from their terrestrial counterparts. While traditional volcanoes are well-documented and studied, their underwater counterparts remain largely unexplored due to the technical challenges of oceanic research. However, recent advances in underwater technology have allowed researchers to delve deeper into this hidden world.\n\n"
               "One such expedition, led by a team of marine biologists and geologists, set out to explore the Pacific Ring of Fire—a vast region known for its high concentration of underwater volcanoes and seismic activity. Equipped with state-of-the-art submersibles and remote sensing equipment, the team descended into the depths in search of answers.\n\n"
               "What they discovered was nothing short of extraordinary. Beneath the surface, they encountered a diverse array of volcanic features, including towering seamounts, hydrothermal vents, and ancient calderas. These underwater landscapes teemed with life, from colorful coral reefs to bizarre deep-sea creatures adapted to extreme conditions.\n\n"
@@ -154,10 +156,50 @@ Align HeadLine() {
           ),
         ),
         const Text(
-          "CRYPTO",
+          "HEADLINE",
           style: TextStyle(
-              fontSize: 28,
-              letterSpacing: 0,
+              fontSize: 25,
+              letterSpacing: 1,
+              fontWeight: FontWeight.w800,
+              fontFamily: 'PolySans'),
+        ),
+      ],
+    ),
+  );
+}
+
+Align articleSource(String sourceName) {
+  return Align(
+    alignment: Alignment.centerLeft,
+    child: Stack(
+      children: [
+        Positioned(
+          bottom: 2,
+          left: 0,
+          right: 0,
+          child: Container(
+            height: 5,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 4,
+          left: 0,
+          right: 0,
+          child: Container(
+            height: 12,
+            decoration: const BoxDecoration(
+              color: Color(0xffB6D9B9),
+            ),
+          ),
+        ),
+         Text(
+          "Source: ${sourceName}",
+          style: const TextStyle(
+              fontSize: 25,
+              letterSpacing: 1,
               fontWeight: FontWeight.w800,
               fontFamily: 'PolySans'),
         ),
@@ -223,7 +265,9 @@ Stack followBtn() {
 }
 
 
-Stack openArticleBtn() {
+Stack openArticleBtn(String url,context) {
+
+WebViewController controller = WebViewController()..loadRequest(Uri.parse(url));
   return Stack(
       children: [
         Container(
@@ -247,31 +291,45 @@ Stack openArticleBtn() {
           width: 200,
           height: 50,
           child: ClipRect(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.yellow,
-                border: Border.all(color: Colors.black, width: 2.3),
-                borderRadius: BorderRadius.circular(0.0),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    "Open Article",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: "Futura-Book",
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900
+            child: InkWell(
+              onTap: (){
+           Navigator.push(context, MaterialPageRoute(builder: (context)=>WebViewPage(controller: controller,)));
+           // showModalBottomSheet(context: context, builder: (BuildContext ccontext){
+           //   return Container(
+           //       height: MediaQuery.of(context).size.height -100,
+           //       child: Expanded(child: WebViewWidget(
+           //         controller: controller,
+           //       )));
+           // });
 
+
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.yellow,
+                  border: Border.all(color: Colors.black, width: 2.3),
+                  borderRadius: BorderRadius.circular(0.0),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      "Open Article",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontFamily: "Futura-Book",
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900
+
+                      ),
                     ),
-                  ),
-                  Icon(
-                    color: Colors.black,
-                    Icons.arrow_forward,
-                    size: 30,
-                    weight: 30,)
-                ],
+                    Icon(
+                      color: Colors.black,
+                      Icons.arrow_forward,
+                      size: 30,
+                      weight: 30,)
+                  ],
+                ),
               ),
             ),
           ),

@@ -3,11 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:day_today/Components/cNews_article.dart';
 import 'package:gap/gap.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 class ArticlePage extends StatelessWidget {
-  const ArticlePage({super.key,required this.title,required this.posterUrl });
+  const ArticlePage({
+    super.key,
+    required this.title,
+    required this.posterUrl,
+    required this.description,
+    required this.source,
+    required this.time,
+    required this.url
+  });
+
   final title;
   final posterUrl;
+  final source;
+  final time;
+  final description;
+  final url;
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +42,23 @@ class ArticlePage extends StatelessWidget {
           // backgroundColor: Color(0xfff2f7bd),
           backgroundColor: Color(0xffc8ebfd),
           actions: [
-            Icon(
-              Icons.bookmarks,
-              color: Colors.black,
-              size: 28,
+            IconButton(
+              onPressed: (){
+
+              },
+              icon: const Icon(
+                Icons.bookmarks,
+                color: Colors.black,
+                size: 28,
+              ),
             ),
-            SizedBox(
-              width: 30,
-            ),
-            Icon(
+           const SizedBox(width: 30,),
+            const Icon(
               Icons.share_outlined,
               color: Colors.black,
               size: 28,
             ),
-            SizedBox(
-              width: 30,
-            ),
+           const Gap(30),
           ],
         ),
         body: ListView(
@@ -65,18 +82,26 @@ class ArticlePage extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [HeadLine(), followBtn()],
+                        children: [HeadLine()],
                       ),
                       const Gap(20),
                       articleTitle(title),
                       const Gap(30),
                       articlePoster(posterUrl),
                       const Gap(30),
-                      newsHeadLine(),
+                      articleSource(source),
+                      Gap(20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          newsHeadLine(),
+                          followBtn(),
+                        ],
+                      ),
                       const Gap(30),
-                      articleContent(),
+                      articleContent(description),
                       const Gap(30),
-                      openArticleBtn(),
+                      openArticleBtn(url, context),
                     ],
                   ),
                 ),

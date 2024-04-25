@@ -129,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 width: 230,
                 child: ElevatedButton(
                   onPressed: () async {
-
+                    await FirebaseAuth.instance.signOut();
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (cotext)=> Introduction()));
                   },
                   child: Row(

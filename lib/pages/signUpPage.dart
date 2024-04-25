@@ -13,8 +13,8 @@ import 'package:lottie/lottie.dart';
 import 'package:day_today/pages/mainPages/HomePage.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 import 'package:day_today/auth_Services/auth_service.dart';
-
-
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
@@ -44,6 +44,11 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
     setState(() {
       isSubmitted = true;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -155,10 +160,27 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                    width: 300,
                                    borderRadius: 10,
                                    buttonType: SocialLoginButtonType.facebook,
-                                   onPressed: () {
-                                     Navigator.pop(context);
-                                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
-                                   },
+                                   onPressed: () async{
+                                     Navigator.pop(BottomSheetcontext);
+                                    try {
+                                          var fbUser = await AuthService()
+                                              .signInWithFacebook();
+                                          if (fbUser != null) {
+                                            setState(() {
+                                              isSubmitted = true;
+                                            });
+                                            await Future.delayed(
+                                                Duration(seconds: 3));
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomePage()));
+                                          }
+                                        }catch(e){
+                                      print(e);
+                                    }
+                                      },
                                  ),
                                ],
                              ),
