@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:day_today/Model/SavedArticles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,8 @@ import 'package:day_today/Components/cSavedPage.dart';
 import 'package:day_today/utilities/dataBase_service.dart';
 import 'package:flutter_swipe_action_cell/flutter_swipe_action_cell.dart';
 import 'package:lottie/lottie.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 class SavedArticlesPage extends StatelessWidget {
   SavedArticlesPage({super.key});
   final DataBaseService _dataBaseService = DataBaseService();

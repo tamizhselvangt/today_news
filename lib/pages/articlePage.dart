@@ -1,5 +1,7 @@
 import 'package:day_today/Model/SavedArticles.dart';
 import 'package:day_today/utilities/dataBase_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -26,7 +28,7 @@ class ArticlePage extends StatelessWidget {
   final description;
   final url;
 
-
+  User? user = FirebaseAuth.instance.currentUser;
   final DataBaseService _dataBaseService = DataBaseService();
 
   @override
@@ -71,7 +73,7 @@ class ArticlePage extends StatelessWidget {
                     duration: Duration(milliseconds: 500),
                   )
                 );
-               SavedArticles saveArt = SavedArticles(title: title, description: description, urlToImage: posterUrl, url: url, publishedAt: time, source: source);
+               SavedArticles saveArt = SavedArticles(title: title, description: description, urlToImage: posterUrl, url: url, publishedAt: time, source: source,uid: user!.uid);
                _dataBaseService.addArticle(saveArt);
               },
               icon: const Icon(
