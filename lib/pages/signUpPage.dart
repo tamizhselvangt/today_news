@@ -7,14 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-// import 'package:googleapis/apigeeregistry/v1.dart';
-// import 'package:googleapis/cloudfunctions/v2.dart';
 import 'package:lottie/lottie.dart';
 import 'package:day_today/pages/mainPages/HomePage.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 import 'package:day_today/auth_Services/auth_service.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 
 
 

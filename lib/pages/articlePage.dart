@@ -1,3 +1,5 @@
+import 'package:day_today/Model/SavedArticles.dart';
+import 'package:day_today/utilities/dataBase_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class ArticlePage extends StatelessWidget {
-  const ArticlePage({
+ ArticlePage({
     super.key,
     required this.title,
     required this.posterUrl,
@@ -24,6 +26,8 @@ class ArticlePage extends StatelessWidget {
   final description;
   final url;
 
+
+  final DataBaseService _dataBaseService = DataBaseService();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,31 @@ class ArticlePage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: (){
-
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Container(
+                        width: double.maxFinite,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: Color(0xfff3e386),
+                          borderRadius: BorderRadius.circular(12)
+                        ),
+                        child: Center(child: Text("Article Saved",
+                        style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 2,
+                          fontFamily: "PolySans",
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black45
+                        ),))),
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    duration: Duration(milliseconds: 500),
+                  )
+                );
+               SavedArticles saveArt = SavedArticles(title: title, description: description, urlToImage: posterUrl, url: url, publishedAt: time, source: source);
+               _dataBaseService.addArticle(saveArt);
               },
               icon: const Icon(
                 Icons.bookmarks,

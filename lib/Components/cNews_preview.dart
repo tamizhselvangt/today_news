@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:day_today/pages/articlePage.dart';
 import 'package:like_button/like_button.dart';
 import 'package:intl/intl.dart';
-
+import 'package:day_today/Model/newsArticle.dart';
 
 
 Widget articlePreviewCard(String searchQuery){
