@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:day_today/Components/cNews_article.dart';
 import 'package:gap/gap.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ArticlePage extends StatelessWidget {
  ArticlePage({
@@ -52,25 +52,11 @@ class ArticlePage extends StatelessWidget {
               onPressed: (){
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Container(
-                        width: double.maxFinite,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: Color(0xfff3e386),
-                          borderRadius: BorderRadius.circular(12)
-                        ),
-                        child: Center(child: Text("Article Saved",
-                        style: TextStyle(
-                          fontSize: 20,
-                          letterSpacing: 2,
-                          fontFamily: "PolySans",
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black45
-                        ),))),
+                    content: snackBarInfo(),
                     behavior: SnackBarBehavior.floating,
                     backgroundColor: Colors.transparent,
                     elevation: 0,
-                    duration: Duration(milliseconds: 500),
+                    duration: Duration(seconds: 2),
                   )
                 );
                SavedArticles saveArt = SavedArticles(title: title, description: description, urlToImage: posterUrl, url: url, publishedAt: time, source: source,uid: user!.uid);
@@ -110,17 +96,14 @@ class ArticlePage extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [HeadLine()],
-                      ),
+                      articleSource(source),
                       const Gap(20),
                       articleTitle(title),
                       const Gap(30),
                       articlePoster(posterUrl),
                       const Gap(30),
-                      articleSource(source),
-                      Gap(20),
+                     // articleSource(source),
+                      // Gap(20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

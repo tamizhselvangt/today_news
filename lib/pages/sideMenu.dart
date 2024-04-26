@@ -1,4 +1,6 @@
 import 'package:day_today/pages/finace/forexPage.dart';
+import 'package:day_today/pages/finace/stockPage.dart';
+import 'package:day_today/pages/weatherPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:day_today/constants/constants.dart';
@@ -24,10 +26,10 @@ class SideMenu extends StatelessWidget {
               const SizedBox(
                 height: 50.0,
               ),
-              InfoCard(
-                name: "Tamizhselavn",
-                emailId: "tamizhselvangt@gmail.com",
-              ),
+              // InfoCard(
+              //   name: "Tamizhselavn",
+              //   emailId: "tamizhselvangt@gmail.com",
+              // ),
               Padding(
                 padding: const EdgeInsets.only(left: 20.0),
                 child: Column(
@@ -44,9 +46,16 @@ class SideMenu extends StatelessWidget {
                       TextButton(
                           onPressed: (){
                             Navigator.push(context,
-                                MaterialPageRoute(builder: (context)=> CryptoPage()));
+                                MaterialPageRoute(builder: (context)=> CalenderPage()));
                           },
-                          child: Text("   Wheather", style: kSideMenuTitleStyle)),
+                          child: Text("   Calender", style: kSideMenuTitleStyle)),
+                      Gap(10),
+                      TextButton(
+                          onPressed: (){
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context)=> WeatherPage()));
+                          },
+                          child: Text("   Weather", style: kSideMenuTitleStyle)),
                       Gap(10),
                       TextButton(
                           onPressed: (){
@@ -65,17 +74,11 @@ class SideMenu extends StatelessWidget {
                       TextButton(
                           onPressed: (){
                             Navigator.push(context,
-                                MaterialPageRoute(builder: (context)=> CryptoPage()));
+                                MaterialPageRoute(builder: (context)=> StockPage()));
                           },
                           child: Text("   Stock", style: kSideMenuTitleStyle)),
                       Gap(10),
-                      TextButton(
-                          onPressed: (){
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context)=> CalenderPage()));
-                          },
-                          child: Text("   Calender", style: kSideMenuTitleStyle)),
-                      Gap(10),
+
                     ]),
               )
             ],

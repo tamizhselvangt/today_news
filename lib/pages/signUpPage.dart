@@ -51,10 +51,10 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffecc9c9),
+      backgroundColor: const Color(0xffecc9c9),
       appBar: AppBar(
-        backgroundColor: Color(0xffecc9c9),
-        title: Text(
+        backgroundColor: const Color(0xffecc9c9),
+        title: const Text(
           'SignIn',
           style: TextStyle(fontSize: 25.0,
           fontFamily: "PolySans",
@@ -65,41 +65,41 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
         child: ListView(
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
+              padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Gap(30),
+                  const Gap(30),
                   isSubmitted ?  Lottie.asset("assets/animations/tickSucessfulAnimation.json",
                   height: 200,
                   width: 200,): Lottie.asset("assets/animations/logInAnimation.json",
                       height: 200,
                       width: 200),
-                  Gap(20),
+                  const Gap(20),
                   ///USERName Text Feild
                   emailIDTextFeild(placeHolder: "User Name", obscureText: false),
-                  Gap(25),
+                  const Gap(25),
                   ///Password TextFeild
                   passwordtextFeild(placeHolder: "Password", obscureText: true),
-                  Gap(25),
+                  const Gap(25),
                   SizedBox(
                     width: 280,
                     child: ElevatedButton(
                       onPressed: () async {
                         emailRegistration();
                       },
-                      child: Text(
-                        'SignIn',
-                      ),
                       style: ElevatedButton.styleFrom(
-                        elevation: 5.0,
+                        elevation: 3.0,
+                      ),
+                      child: const Text(
+                        'SignIn',
                       ),
                     ),
                   ),
-                  Gap(25),
+                  const Gap(25),
                   TextButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'Forgot Your Password ?',
                         style: TextStyle(
                           // color: Colors.green.shade400,
@@ -110,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                         showModalBottomSheet(context: context, builder:(BuildContext BottomSheetcontext){
                           return Container(
                            height: 350,
-                           decoration: BoxDecoration(
+                           decoration: const BoxDecoration(
                              color: Color(0xffE5BDC1),
                              borderRadius: BorderRadius.vertical(top: Radius.circular(30))
                            ),
@@ -118,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                                children: [
-                                 SizedBox(height: 10),
+                                 const SizedBox(height: 10),
                                  SocialLoginButton(
                                    height: 50,
                                    width: 300,
@@ -133,25 +133,25 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                          isSubmitted = true;
                                        });
                                        await Future.delayed(
-                                           Duration(seconds: 3));
+                                           const Duration(seconds: 3));
                                        Navigator.pushReplacement(context,
                                            MaterialPageRoute(
                                                builder: (context) =>
-                                                   HomePage()));
+                                                   const HomePage()));
                                      }
                                    },
                                  ),
-                                Gap(20),
+                                const Gap(20),
                                  Platform.isIOS ? SocialLoginButton(
                                    height: 50,
                                    width: 300,
                                    borderRadius: 10,
                                    buttonType: SocialLoginButtonType.appleBlack,
                                    onPressed: () {},
-                                 ) : Gap(0),
-                                 SizedBox(height: 20),
+                                 ) : const Gap(0),
+                                 const SizedBox(height: 20),
                                  SocialLoginButton(
-                                   backgroundColor: Color(0xff0866FF),
+                                   backgroundColor: const Color(0xff0866FF),
                                    imageURL: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png",
                                    height: 50,
                                    width: 300,
@@ -167,12 +167,12 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                               isSubmitted = true;
                                             });
                                             await Future.delayed(
-                                                Duration(seconds: 3));
+                                                const Duration(seconds: 3));
                                             Navigator.pushReplacement(
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        HomePage()));
+                                                        const HomePage()));
                                           }
                                         }catch(e){
                                       print(e);
@@ -197,7 +197,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                     indent: 25,
                     endIndent: 25,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20.0,
                   ),
 
@@ -214,21 +214,21 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
     return Stack(
       children: [
         Padding(
-          padding: EdgeInsets.fromLTRB(5, 5, 0, 0),
+          padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
           child: Container(
             height: 65,
             width: 280,
             decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withOpacity(0.3),
                       spreadRadius: 1,
                       blurRadius: 15,
-                      offset: Offset(0, 0), // changes position of shadow
+                      offset: const Offset(0, 0), // changes position of shadow
                  ),
           ],
               color: isUserSelected ? Colors.white : Colors.transparent,
-              border: Border.all(color: Colors.black, width: 1.3),
+              border: Border.all(color: isPasswordSelected ? Colors.black : Colors.black54, width: 1.3),
               borderRadius: BorderRadius.circular(10.0),
             ),
           ),
@@ -238,7 +238,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
           width: 280,
 
           decoration: BoxDecoration(
-            color: Color(0xffe5a3a3),
+            color: const Color(0xffe5a3a3),
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Form(
@@ -246,12 +246,12 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
             child: TextFormField(
               validator: (value){
                 if(value==null||value.isEmpty){
-                  return "Please Enter a Valide Email";
+                  return "Please Enter a Valid Email";
                 }
                 return null;
               },
               controller: emailController,
-              style: TextStyle(
+              style: const TextStyle(
                   fontFamily: "PolySans",
                   fontSize: 20,
                   fontWeight: FontWeight.w500),
@@ -270,11 +270,11 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: const BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                         width: 2,
                         color: Colors.black),
                   ),
@@ -284,7 +284,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                   ),
                   labelText: placeHolder,
                   hintText: "example@gmail.com",
-                  hintStyle: TextStyle(
+                  hintStyle: const TextStyle(
                       color: Colors.white54,
                       fontSize: 20,
                       fontWeight: FontWeight.w100
@@ -301,21 +301,21 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
     return Stack(
       children: [
         Padding(
-          padding: EdgeInsets.fromLTRB(5, 5, 0, 0),
+          padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
           child: Container(
             height: 65,
             width: 280,
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.5),
+                  color: Colors.black.withOpacity(0.3),
                   spreadRadius: 1,
                   blurRadius: 15,
-                  offset: Offset(0, 0), // changes position of shadow
+                  offset: const Offset(0, 0), // changes position of shadow
                 ),
               ],
               color: isPasswordSelected ? Colors.white : Colors.transparent,
-              border: Border.all(color: Colors.black, width: 1.3),
+              border: Border.all(color:isPasswordSelected ? Colors.black : Colors.black54, width: 1.4),
               borderRadius: BorderRadius.circular(10.0),
             ),
           ),
@@ -324,7 +324,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
           height: 64,
           width: 280,
           decoration: BoxDecoration(
-            color: Color(0xffe5a3a3),
+            color: const Color(0xffe5a3a3),
             borderRadius: BorderRadius.circular(10),
           ),
 
@@ -354,17 +354,17 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                 // hintText: "Password",
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.grey),
+                    borderSide: const BorderSide(color: Colors.grey),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                         width: 2,
                         color: Colors.black),
                   ),
                   // border: OutlineInputBorder(borderRadius: BorderRadius.circular(0.0)),
                   labelText: placeHolder,
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     fontWeight: FontWeight.w100,
                     fontFamily: "PolySans",
                     fontSize: 18,
@@ -383,17 +383,17 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Registered Successfully")));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Registered Successfully")));
       setState(() {
         isSubmitted = true;
       });
-      await Future.delayed(Duration(seconds: 3));
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+      await Future.delayed(const Duration(seconds: 3));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
     }on FirebaseAuthException catch (e){
       if(e.code == "weak-password"){
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Password Provided is too weak")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Password Provided is too weak")));
       }else if(e.code == "email-already-in-use"){
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email is already Registered")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email is already Registered")));
       }
     }
   }
@@ -407,12 +407,12 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
       setState(() {
         isSubmitted = true;
       });
-      await Future.delayed(Duration(seconds: 3));
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+      await Future.delayed(const Duration(seconds: 3));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePage()));
 
     }catch(e){
       print(e);
-      AlertDialog(
+      const AlertDialog(
         content: Text("Authentication Not Permitted "
             "Try agai!"),
 

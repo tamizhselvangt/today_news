@@ -5,14 +5,14 @@ import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 
 
-class ExamplePage extends StatefulWidget {
-  const ExamplePage({super.key});
+class WeatherPage extends StatefulWidget {
+  const WeatherPage({super.key});
 
   @override
-  State<ExamplePage> createState() => _ExamplePageState();
+  State<WeatherPage> createState() => _WeatherPageState();
 }
 
-class _ExamplePageState extends State<ExamplePage> {
+class _WeatherPageState extends State<WeatherPage> {
 
   var apiKey = 'cf3ef34cf3fa6292e5fe9c21222cb428';
   final _weatherService = Weatherservice();
@@ -65,50 +65,50 @@ class _ExamplePageState extends State<ExamplePage> {
     return Scaffold(
       backgroundColor: Color(0xffE0FFFF),
       appBar: AppBar(
-          backgroundColor: Color(0xffE0FFFF),
+        backgroundColor: Color(0xffE0FFFF),
       ),
-  body: Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.location_on_rounded,
-            color: Colors.black54,
-            size: 35,),
-            Text(_weather?.cityName ?? "loading City",
-            style: TextStyle(
-              fontSize: 20,
-              fontFamily: "PolySans",
-              fontWeight: FontWeight.w600,
-              color: Colors.black54
-            ),),
-          ],
-        ),
-        Lottie.asset(getWeatherAnimation(_weather?.mainCondition),),
-        Column(
-          children: [
-            Text('${_weather?.temperature.round()}°C',
-            style: TextStyle(
-                fontSize: 35,
-                fontFamily: "PolySans",
-                fontWeight: FontWeight.w600,
-                color: Colors.black54
+            Column(
+              children: [
+                Icon(Icons.location_on_rounded,
+                  color: Colors.black54,
+                  size: 35,),
+                Text(_weather?.cityName ?? "loading City",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: "PolySans",
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black54
+                  ),),
+              ],
+            ),
+            Lottie.asset(getWeatherAnimation(_weather?.mainCondition),),
+            Column(
+              children: [
+                Text('${_weather?.temperature.round()}°C',
+                  style: TextStyle(
+                      fontSize: 35,
+                      fontFamily: "PolySans",
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black54
 
-            ),),
-            Text('${_weather?.mainCondition}',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontFamily: "PolySans",
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black38,
-                )),
+                  ),),
+                Text('${_weather?.mainCondition}',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: "PolySans",
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black38,
+                    )),
+              ],
+            ),
+            Gap(30)
           ],
         ),
-        Gap(30)
-      ],
-    ),
-  ),
+      ),
     );
   }
 }

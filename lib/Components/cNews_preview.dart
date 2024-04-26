@@ -66,7 +66,7 @@ Widget articlePreviewCard(String searchQuery){
                             padding: const EdgeInsets.fromLTRB(15,20,10,0),
                             child: Column(
                               children: [
-                                Headline(),
+                                headLine(article.source!),
                                 const SizedBox(height: 10,),
                                 articlePreviewTitle(article.title!),
                                 const SizedBox(height: 10,),
@@ -95,50 +95,47 @@ Widget articlePreviewCard(String searchQuery){
   );
 }
 
-class Headline extends StatelessWidget {
-
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 30,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: 2,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                ),
+Widget headLine(String sourceHeadLine){
+  return SizedBox(
+    height: 33,
+    child: Align(
+      alignment: Alignment.centerLeft,
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 2,
+              decoration: const BoxDecoration(
+                color: Colors.white,
               ),
             ),
-            Positioned(
-              bottom: 0.5,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: 15,
-                decoration: const BoxDecoration(
-                  color: Color(0xfff3e386),
-                ),
+          ),
+          Positioned(
+            bottom: 0.5,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 15,
+              decoration: const BoxDecoration(
+                color: Color(0xfff3e386),
               ),
             ),
-            const Text(
-              "HEADLINE",
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w800,
-                  fontFamily: 'PolySans'
-              ),
+          ),
+          Text(
+            sourceHeadLine,
+            style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.w800,
+                fontFamily: 'PolySans'
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
-  }
+    ),
+  );
 }
 
 Widget articlePreviewTitle(String title){
