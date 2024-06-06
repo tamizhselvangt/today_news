@@ -142,14 +142,19 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                                    },
                                  ),
                                 const Gap(20),
-                                 Platform.isIOS ? SocialLoginButton(
-                                   height: 50,
-                                   width: 300,
-                                   borderRadius: 10,
-                                   buttonType: SocialLoginButtonType.appleBlack,
-                                   onPressed: () {},
+                                 Platform.isIOS ? Column(
+                                   children: [
+                                     SocialLoginButton(
+                                       height: 50,
+                                       width: 300,
+                                       borderRadius: 10,
+                                       buttonType: SocialLoginButtonType.appleBlack,
+                                       onPressed: () {},
+                                     ),
+                                     const SizedBox(height: 20),
+                                   ],
                                  ) : const Gap(0),
-                                 const SizedBox(height: 20),
+
                                  SocialLoginButton(
                                    backgroundColor: const Color(0xff0866FF),
                                    imageURL: "https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png",
@@ -228,7 +233,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                  ),
           ],
               color: isUserSelected ? Colors.white : Colors.transparent,
-              border: Border.all(color: isPasswordSelected ? Colors.black : Colors.black54, width: 1.3),
+              border: Border.all(color: isUserSelected ? Colors.black : Colors.black54, width: isUserSelected ? 1.4 : 2),
               borderRadius: BorderRadius.circular(10.0),
             ),
           ),
@@ -315,7 +320,7 @@ class _SignUpPageState extends State<SignUpPage> with SingleTickerProviderStateM
                 ),
               ],
               color: isPasswordSelected ? Colors.white : Colors.transparent,
-              border: Border.all(color:isPasswordSelected ? Colors.black : Colors.black54, width: 1.4),
+              border: Border.all(color:isPasswordSelected ? Colors.black : Colors.black54, width: isPasswordSelected ? 1.3 : 2),
               borderRadius: BorderRadius.circular(10.0),
             ),
           ),

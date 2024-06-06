@@ -51,7 +51,7 @@ class CandleData {
 
 
 Future<List<Quote>> forexExchange() async {
-  final personalToken = '2aa640d9-dfc0-4df6-a321-2d9a328ee4c9';
+  final personalToken = 'c1f21dba-cb72-4a1d-985a-af75980638eb';
   final base_quote = "&base=USD&base=EUR&base=JPY&base=GBP&quote=EUR&quote=USD&quote=GBP&quote=JPY&quote=AUD&quote=CAD&quote=CHF&quote=NZD&quote=CHF&quote=HKD&quote=SGD";
   final url =  "https://exchange-rates-api.oanda.com/v2/rates/spot.json?api_key=${personalToken}${base_quote}";
 

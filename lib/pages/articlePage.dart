@@ -1,14 +1,14 @@
 import 'package:day_today/Model/SavedArticles.dart';
 import 'package:day_today/utilities/dataBase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:day_today/Components/cNews_article.dart';
 import 'package:gap/gap.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:share_plus/share_plus.dart';
+
+
 
 class ArticlePage extends StatelessWidget {
  ArticlePage({
@@ -68,11 +68,12 @@ class ArticlePage extends StatelessWidget {
                 size: 28,
               ),
             ),
-           const SizedBox(width: 30,),
-            const Icon(
-              Icons.share_outlined,
-              color: Colors.black,
-              size: 28,
+            IconButton(
+              onPressed: (){
+                Share.share(url);
+              },
+              icon:  Image.asset("assets/images/share-option.png",
+                width: 25,)
             ),
            const Gap(30),
           ],

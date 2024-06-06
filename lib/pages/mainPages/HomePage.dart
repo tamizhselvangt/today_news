@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:day_today/Components/cNews_preview.dart';
 import 'package:day_today/utilities/selectedDomain.dart';
@@ -210,7 +211,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 width: 37,
                 child: Image.asset(
                   "assets/images/bookmark-icon-12335.png",
-                  color: Colors.black,
+                  color: selectedPage=="Saved" ? Colors.black54 : Colors.black ,
                 ),
               ),
             ),
@@ -249,6 +250,10 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Color(0xffE1CDFF),
       appBar: AppBar(
         backgroundColor: Color(0xffE1CDFF),
+        actions: [
+          appTitle(),
+          Gap(20)
+        ],
       ),
       body: Column(
         children: [
@@ -262,12 +267,57 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+class appTitle extends StatelessWidget {
+  const appTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            height: 2,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 1,
+          left: 0,
+          right: 0,
+          child: Container(
+            height: 10,
+            decoration: const BoxDecoration(
+              color: Color(0xff6EF7C3),
+            ),
+          ),
+        ),
+        Text(
+          "DayToday",
+          style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w800,
+              fontFamily: 'PolySans'
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 
 
 class TopDomainTitles extends StatelessWidget {
   const TopDomainTitles({
     super.key,
   });
+  
 
   @override
   Widget build(BuildContext context) {

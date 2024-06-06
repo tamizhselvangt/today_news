@@ -140,7 +140,7 @@ class SavedArticleCard extends StatelessWidget {
                         child: IconButton(
                           onPressed: (){
 
-                            Share.share('check out my website https://example.com');
+                            Share.share(url);
                           },
                           icon: Icon(
                               Icons.ios_share_rounded,
@@ -176,11 +176,10 @@ class SharedArticleCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
         child: Container(
-          height: 250,
           child: Stack(
             children: [
               Container(
-                height: 250,
+                height: MediaQuery.of(context).size.height/3,
                 color: Colors.transparent,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),

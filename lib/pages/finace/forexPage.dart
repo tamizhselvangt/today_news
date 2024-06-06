@@ -7,8 +7,18 @@ import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:day_today/utilities/forexApi.dart';
 import 'dart:convert';
+import 'package:nuts_activity_indicator/nuts_activity_indicator.dart';
 
-
+// And finally, use and customize the widget:
+// final spinner = NutsActivityIndicator(
+//   activeColor: Colors.indigo,
+//   inactiveColor: Colors.blueGrey,
+//   tickCount: 24,
+//   relativeWidth: 0.4,
+//   radius: 60,
+//   startRatio: 0.7,
+//   animationDuration: Duration(milliseconds: 500),
+// );
 
 class ForexPage extends StatefulWidget {
   const ForexPage({super.key});
@@ -50,16 +60,16 @@ class _ForexPageState extends State<ForexPage> {
               child: SizedBox(
                 child: Column(
                   children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
-                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
-                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
-                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
-                        TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
-                      ],
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     TextButton(onPressed: (){}, child: Text("5", style: TextStyle(color: Colors.black54),)),
+                    //     TextButton(onPressed: (){}, child: Text("10", style: TextStyle(color: Colors.black54),)),
+                    //     TextButton(onPressed: (){}, child: Text("15", style: TextStyle(color: Colors.black54),)),
+                    //     TextButton(onPressed: (){}, child: Text("30", style: TextStyle(color: Colors.black54),)),
+                    //     TextButton(onPressed: (){}, child: Text("60", style: TextStyle(color: Colors.black54),)),
+                    //   ],
+                    // ),
                     Expanded(
                       flex: 2,
                       child: Container(
@@ -110,7 +120,7 @@ class _ForexPageState extends State<ForexPage> {
             child: Container(
               height: MediaQuery.of(context).size.height/3,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Colors.white60,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(65),
                   topRight: Radius.circular(65),
@@ -196,9 +206,9 @@ class TopTenInstrument extends StatelessWidget {
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.black.withOpacity(0.05),
+          color: Colors.transparent,
         ),
-        color: Colors.black.withOpacity(0.05),
+        color: Colors.transparent,
         borderRadius: BorderRadius.all(
           Radius.circular(8),
         ),

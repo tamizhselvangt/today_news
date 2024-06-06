@@ -69,6 +69,8 @@ dependencies:
   geolocator: ^11.0.0
   geocoding: ^3.0.0
   neopop: ^1.0.2
+  redacted: ^1.0.11
+  nuts_activity_indicator: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -97,6 +99,7 @@ flutter:
     - assets/animations/weather_animations/cloud.json
     - assets/animations/weather_animations/rain.json
     - assets/animations/weather_animations/sunny.json
+    - assets/animations/empty_Messages.json
     - assets/animations/weather_animations/thunder.json
     - assets/animations/logInAnimation.json
     - assets/animations/tickSucessfulAnimation.json

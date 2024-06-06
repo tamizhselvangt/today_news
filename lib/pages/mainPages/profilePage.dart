@@ -29,126 +29,129 @@ class _ProfilePageState extends State<ProfilePage> {
       backgroundColor:  Color(0xffD4B1D6),
       body: SafeArea(
         child: Center(
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
             children: [
-              Gap(40),
-              Stack(
-                children: [
-                  CircleAvatar(
-                    // backgroundColor: Colors.white54,
-                   backgroundImage: _user==null ? NetworkImage("https://pngall.com/wp-content/uploads/5/User-Profile-PNG-Picture.png",) : NetworkImage(_user!.photoURL!),
-                    radius: 55,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(68,67,0,0),
-                    child: CircleAvatar(
-                      radius: 20,
-                      child: Center(child: IconButton(icon: Icon(Icons.edit_rounded),onPressed: (){},)),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(70,70,0,0),
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(60),
-                          border: Border.all(
-                              width: 2
-                          )
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: Text(_user!=null ? _user!.displayName!  :"Tamizhselvan Gurusamy",style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: "PolySans",
-                ),),
-              ),
-              Text( _user!=null ? _user!.email!  : "tamizhselvangt@gmail.com"
-                ,style: TextStyle(
-                fontSize: 18,
-                color: Colors.black54,
-                fontWeight: FontWeight.w600,
-                fontFamily: "PolySans",
-              ),),
-              Gap(30),
-              SizedBox(
-                width: 230,
-                child: ElevatedButton(
-                  onPressed: () async {
-                  },
-                  child: Text("Edit Profile",
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontFamily: "PolySans",
-                      fontSize: 20,
-                    ),),
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: Size(0, 50),
-                      elevation: 5.0,
-                      backgroundColor:  Color(0xffffd9e2)
-                  ),
-                ),
-              ),
-              Gap(50),
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  TextButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor:  Colors.transparent
-                      ),
-                      onPressed:(){
-
-                      },
-                      child: settingsButtons(title: "Setting", icon: Icons.settings,)),
-                  Gap(20),
-                  TextButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor:  Colors.transparent
-                      ),
-                      onPressed:(){},
-                      child: settingsButtons(title: "Notification", icon: Icons.notifications,)),
-                  Gap(20),
-                  TextButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor:  Colors.transparent
-                      ),
-                      onPressed:(){},
-                      child: settingsButtons(title: "Languages", icon: Icons.language_rounded,)),
-                  Gap(50),
-                ],
-              ),
-              SizedBox(
-                width: 230,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await FirebaseAuth.instance.signOut();
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (cotext)=> Introduction()));
-                  },
-                  child: Row(
+                  Gap(40),
+                  Stack(
                     children: [
-                      Icon(Icons.logout_rounded),
-                      Text("Log out",
+                      CircleAvatar(
+                        // backgroundColor: Colors.white54,
+                       backgroundImage: _user==null ? NetworkImage("https://pngall.com/wp-content/uploads/5/User-Profile-PNG-Picture.png",) : NetworkImage(_user!.photoURL!),
+                        radius: 55,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(68,67,0,0),
+                        child: CircleAvatar(
+                          radius: 20,
+                          child: Center(child: IconButton(icon: Icon(Icons.edit_rounded),onPressed: (){},)),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(70,70,0,0),
+                        child: Container(
+                          width: 35,
+                          height: 35,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(60),
+                              border: Border.all(
+                                  width: 2
+                              )
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(_user!=null ? _user!.displayName!  :"Tamizhselvan Gurusamy",style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "PolySans",
+                    ),),
+                  ),
+                  Text( _user!=null ? _user!.email!  : "tamizhselvangt@gmail.com"
+                    ,style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black54,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "PolySans",
+                  ),),
+                  Gap(30),
+                  SizedBox(
+                    width: 230,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                      },
+                      child: Text("Edit Profile",
                         style: TextStyle(
-                          color: Colors.red,
+                          color: Colors.black87,
                           fontFamily: "PolySans",
                           fontSize: 20,
                         ),),
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: Size(0, 50),
+                          elevation: 5.0,
+                          backgroundColor:  Color(0xffffd9e2)
+                      ),
+                    ),
+                  ),
+                  Gap(50),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:  Colors.transparent
+                          ),
+                          onPressed:(){
+
+                          },
+                          child: settingsButtons(title: "Setting", icon: Icons.settings,)),
+                      Gap(20),
+                      TextButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:  Colors.transparent
+                          ),
+                          onPressed:(){},
+                          child: settingsButtons(title: "Notification", icon: Icons.notifications,)),
+                      Gap(20),
+                      TextButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:  Colors.transparent
+                          ),
+                          onPressed:(){},
+                          child: settingsButtons(title: "Languages", icon: Icons.language_rounded,)),
+                      Gap(50),
                     ],
                   ),
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: Size(0, 50),
-                      elevation: 5.0,
-                      backgroundColor:  Colors.grey.shade300
+                  SizedBox(
+                    width: 230,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (cotext)=> Introduction()));
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.logout_rounded),
+                          Text("Log out",
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontFamily: "PolySans",
+                              fontSize: 20,
+                            ),),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: Size(0, 50),
+                          elevation: 5.0,
+                          backgroundColor:  Colors.grey.shade300
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),

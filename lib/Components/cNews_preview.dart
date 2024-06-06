@@ -9,7 +9,7 @@ import 'package:day_today/pages/articlePage.dart';
 import 'package:like_button/like_button.dart';
 import 'package:intl/intl.dart';
 import 'package:day_today/Model/newsArticle.dart';
-
+import 'package:gap/gap.dart';
 
 Widget articlePreviewCard(String searchQuery){
 
@@ -219,21 +219,30 @@ Widget articlePrevieDescription(String description){
 
 Widget articleBottomIcons(int time){
   return SizedBox(
-    height: 23,
+    height: 25,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
           children: [
+            SizedBox(width: 20,),
             LikeButton(
-                size: 23,
-                circleColor:  CircleColor(
-                    start: Color(0xff00ddff),
-                    end: Color(0xff0099cc))
+              circleColor:
+              CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
+              bubblesColor: BubblesColor(
+                dotPrimaryColor: Color(0xff33b5e5),
+                dotSecondaryColor: Color(0xff0099cc),
+              ),
+              likeBuilder: (bool isLiked) {
+                return Icon(
+                  isLiked ? Icons.bookmarks: Icons.bookmarks_outlined,
+                  color: isLiked ? Colors.black87 : Colors.black54,
+                  size: 27,
+                );
+              },
             ),
-            SizedBox(width: 30,),
-            Icon(Icons.volume_up_outlined,size: 25,
-            color: Colors.black38,),
+            // Icon(Icons.volume_up_outlined,size: 25,
+            // color: Colors.black38,),
           ],
         ),
         Row(
@@ -337,4 +346,73 @@ Widget previewPoster(String url){
         ],
       ),
     );
+}
+
+Widget reductedWidget(context){
+  return Container(
+    height: 510,
+    width: double.infinity,
+    child: Padding(
+      padding: EdgeInsets.fromLTRB(15,20,10,0),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Container(
+                  height: 30,
+                  width: MediaQuery.of(context).size.width/3,
+                  child: Text("headLineText is Here")),
+            ],
+          ),
+          Gap(10),
+          Container(
+            height: 60,
+            child: Text(""),
+          ),
+          Gap(10),
+          Stack(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width - 100,
+                height: 250,
+                child: Text(""),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(25, 20, 0, 0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 100,
+                  height: 250,
+                  child: Text(""),
+                ),
+              ),
+            ],
+          ),
+          Gap(10),
+          Container(
+            height: 20,
+            child: Text(""),
+          ),
+          Gap(4),
+          Row(
+            children: [
+              Text("ksadbfkbdsakfjbckiasdbfikbakbdsuiajbkqdehwIU"),
+            ],
+          ),
+          Row(
+            children: [
+              Text("ksadbfkbdsakfjbckiasdbfikbiusadhfiuh"),
+            ],
+          ),
+          Gap(10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text("ksadbsdafdsaibf"),
+              Gap(4),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
 }
