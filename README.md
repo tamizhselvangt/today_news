@@ -1,4 +1,4 @@
-# 📱 News Tracker  
+# 📱 DayToday (News Tracker)
 
 **A cross-platform mobile application built with Flutter, providing real-time news, weather updates, and financial market insights all in one place.**  
 
@@ -83,14 +83,7 @@ Here are some key screenshots showcasing the features of the **News Tracker** ap
     <td align="center">
       <img src="https://github.com/user-attachments/assets/519c8dbd-00f5-42bc-b61d-f3bb75b74287" alt="Article Page Bottom" width="300">
       <p>Article Page Bottom (Open Link to Source)</p>
-    </td>
-
-   <td align="center">
-      <img src=" https://github.com/user-attachments/assets/947bd5d0-a813-4835-8d10-881a3d8f3c33" alt="Share Content" width="300">
-      <p>Share Content</p>
-    </td>
-
-   
+    </td>   
   </tr>
   <tr>
     <td align="center">
@@ -159,6 +152,27 @@ Here are some key screenshots showcasing the features of the **News Tracker** ap
 ## 📖 How to Use  
 
 1. **Clone the repository**: )
-
+ ```bash
    git clone https://github.com/tamizhselvangt/news-tracker.git  
-   cd news-tracker  
+   cd news-tracker
+  ```
+
+Install dependencies:
+      flutter pub get  
+ Run the app:
+Use the following command to run the app on an emulator or connected device:
+ ```bash
+flutter run
+ ```
+
+🤝 Contributing
+
+Contributions are welcome! If you’d like to contribute, please fork the repository and submit a pull request.
+
+📧 Contact
+
+For queries or suggestions, feel free to reach out:
+Tamizhselvan Gurusamy
+
+Email: tamizhselvanga@gmail.com
+GitHub: tamizhselvangt 
