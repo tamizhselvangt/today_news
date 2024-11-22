@@ -58,19 +58,17 @@ Here are some key screenshots showcasing the features of the **News Tracker** ap
       <p>Login Page</p>
     </td>
    <td align="center">
-    <video width="300" controls>
-    <source src="https://github.com/user-attachments/assets/2a824972-14e5-412e-9db3-098029479ca5">
-    Your browser does not support the video tag.
-    </video>
-  <p>Login Screen-Rec</p>
-</td>
+      <img src="https://github.com/user-attachments/assets/194d3436-2fd6-4b59-9bab-63260b509554" alt="Login Sucess Page" width="300">
+      <p>Login Sucess Page</p>
+    </td>
+    
 </tr>
   <tr>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/194d3436-2fd6-4b59-9bab-63260b509554" alt="Login Sucess Page" width="300">
-      <p>Login Page</p>
+      <img src="https://github.com/user-attachments/assets/ae312e70-6f6e-4eb6-8294-309ebfbd8c28" alt="Home Page" width="300">
+      <p>Home Page</p>
     </td>
-    <td align="center">
+     <td align="center">
       <img src="https://github.com/user-attachments/assets/d4b61c75-04ff-4ec4-808e-fc40dc09979f" alt="Home Page" width="300">
       <p>Home Page</p>
     </td>
